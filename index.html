@@ -102,8 +102,17 @@
 
         .nav-link {
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--txt-drk);
+            border: 1px solid var(--txt-drk);
+            padding: 10px 24px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--txt-drk);
+            color: var(--bg-crm);
         }
 
         /* --- HERO SECTION --- */
@@ -260,28 +269,70 @@
 
         /* --- FOOTER --- */
         footer {
-            padding: 3rem 0;
-            border-top: 1px solid rgba(74, 59, 74, 0.1);
+            background-color: var(--txt-drk);
+            /* Dark background for highlighted look */
+            color: var(--bg-crm);
+            /* Light text */
+            padding: 4rem 0 2rem;
             margin-top: auto;
+        }
+
+        .container.footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .footer-content {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            font-size: 0.85rem;
-            color: rgba(74, 59, 74, 0.7);
+            gap: 2rem;
+            text-align: center;
         }
 
         .social-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
-        .social-links a {
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(242, 229, 212, 0.1);
+            /* Subtle circle bg */
+            color: var(--bg-crm);
+            transition: all 0.3s ease;
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .social-link:hover {
+            background-color: var(--pri-pur);
+            transform: translateY(-3px);
+            color: var(--txt-lgt);
+        }
+
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background-color: rgba(242, 229, 212, 0.2);
+            margin: 1rem 0;
+            max-width: 300px;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            font-family: var(--font-body);
         }
 
         /* --- RESPONSIVE --- */
@@ -403,7 +454,7 @@
         <header>
             <nav>
                 <a href="#" class="logo">VELLO</a>
-                <a href="#" class="nav-link">Contact</a>
+                <a href="mailto:founders@vello.in" class="nav-link">Contact Us</a>
             </nav>
         </header>
     </div>
@@ -413,11 +464,15 @@
             <h1>Wellness with Velocity.</h1>
             <p class="subheadline">The pharmacy experience, perfected. Trusted medicines delivered in minutes.</p>
 
-            <form class="cta-form" onsubmit="event.preventDefault();">
+            <!-- 
+                NOTE: Paste your Google Apps Script Web App URL in the script tag below 
+            -->
+            <form class="cta-form" name="submit-to-google-sheet">
                 <div class="input-group">
-                    <input type="email" placeholder="Enter your email address" required>
+                    <input type="email" name="email" placeholder="Enter your email address" required>
                 </div>
                 <button type="submit" class="btn-submit">Join Waitlist</button>
+                <div id="msg" style="margin-top: 10px; font-size: 0.9rem;"></div>
             </form>
         </div>
     </main>
@@ -426,21 +481,77 @@
         <div class="pattern-strip"></div>
     </div>
 
-    <div class="container">
-        <footer>
+    <!-- Removed default container wrapper for footer to allow full width background -->
+    <footer>
+        <div class="container footer-container">
             <div class="footer-content">
-                <div class="copyright">&copy; 2026 Vello Technologies.</div>
+                <!-- Socials First/Prominent -->
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/company/vello1">LinkedIn</a>
-                    <a
-                        href="https://www.instagram.com/vello24x7?igsh=MXRmb3B6bGRnbGJnOA%3D%3D&utm_source=qr">Instagram</a>
+                    <a href="https://www.linkedin.com/company/vello1" class="social-link" aria-label="LinkedIn"
+                        target="_blank">
+                        <!-- LinkedIn SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/vello24x7?igsh=MXRmb3B6bGRnbGJnOA%3D%3D&utm_source=qr"
+                        class="social-link" aria-label="Instagram" target="_blank">
+                        <!-- Instagram SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
                 </div>
+
+                <div class="footer-divider"></div>
+
+                <!-- Copyright Below -->
+                <div class="copyright">&copy; 2026 VELLO Private Limited. All rights reserved.</div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <script>
-        // Custom Cursor Logic
+        // --- GOOGLE SHEETS SUBMISSION LOGIC ---
+        // TODO: PASTE YOUR SCRIPT URL HERE
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwsrSO5SljpqbSdw_yt2edufxZ8Qpc2Jn8pIZqRuj3jhPs8-rxodhPSuxNKfKw7USxk/exec';
+
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.getElementById("msg");
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            // User feedback - loading
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Joining...";
+            btn.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    msg.innerHTML = "Thank you! You're on the list.";
+                    msg.style.color = "#4a3b4a"; // Dark purple
+                    btn.innerText = "Joined";
+                    form.reset();
+                    setTimeout(() => {
+                        msg.innerHTML = "";
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }, 5000)
+                })
+                .catch(error => {
+                    msg.innerHTML = "Error! Please try again.";
+                    msg.style.color = "red";
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    console.error('Error!', error.message);
+                })
+        });
+
+
+        // --- CUSTOM CURSOR LOGIC ---
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
