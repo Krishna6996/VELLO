@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELLO | Wellness with Velocity</title>
+
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Added Script fonts: Pacifico, Dancing Script, Kalam -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Kalam:wght@700&family=Montserrat:wght@700;800&family=Pacifico&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-crm: #f2e5d4;
+            --pri-pur: #af96ad;
+            --txt-drk: #4a3b4a;
+            --txt-lgt: #f9f5f0;
+
+            /* USER: CHANGE HEADLINE FONT HERE */
+            /* Options: 'Pacifico', 'Dancing Script', 'Kalam' */
+            --font-head: 'Pacifico', cursive;
+
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--bg-crm);
+            color: var(--txt-drk);
+            font-family: var(--font-body);
+            line-height: 1.5;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input {
+            outline: none;
+        }
+
+        /* --- LAYOUT UTILS --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            padding: 2.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            background-color: var(--pri-pur);
+            color: var(--txt-lgt);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 10px 32px;
+            border-radius: 100px;
+            /* Lozenge/Pill shape */
+            display: inline-block;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--txt-drk);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 1rem 6rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        h1 {
+            font-family: var(--font-head);
+            font-size: 4.5rem;
+            /* Adjusted size for script readability */
+            font-weight: 400;
+            /* Script fonts usually don't need bold weights manually applied */
+            line-height: 1.2;
+            /* Looser line height for script ascenders/descenders */
+            margin-bottom: 1.5rem;
+            color: var(--txt-drk);
+            letter-spacing: normal;
+            /* Scripts shouldn't look too tight */
+        }
+
+        .subheadline {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--txt-drk);
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* --- CTA FORM --- */
+        .cta-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            position: relative;
+            width: 100%;
+            display: flex;
+            border-bottom: 1px solid rgba(74, 59, 74, 0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group:focus-within {
+            border-bottom-color: var(--txt-drk);
+        }
+
+        input[type="email"] {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 1rem 0;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--txt-drk);
+        }
+
+        input[type="email"]::placeholder {
+            color: rgba(74, 59, 74, 0.5);
+        }
+
+        .btn-submit {
+            margin-top: 1.5rem;
+            background-color: var(--pri-pur);
+            color: var(--txt-lgt);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 16px 48px;
+            border-radius: 4px;
+            /* Slight rounding, mostly square for premium feel */
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(175, 150, 173, 0.2);
+        }
+
+        /* --- VISUAL BREAK (PATTERN) --- */
+        .visual-break {
+            width: 100%;
+            height: 160px;
+            /* Slightly taller for better visibility */
+            background-color: var(--pri-pur);
+            position: relative;
+            margin-bottom: 2rem;
+            overflow: hidden;
+
+            /* Seamless integration: Fade top and bottom into the background */
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+
+            /* Border treatment - removed hard lines for seamless feel, relying on mask */
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .pattern-strip {
+            width: 100%;
+            height: 100%;
+            background-image: url('pattern.jpeg');
+            background-repeat: repeat;
+            background-size: 400px;
+            /* Larger scale */
+            background-position: center;
+
+            /* Base State: Muted and Blended */
+            filter: grayscale(100%) contrast(1.1) opacity(0.3);
+            mix-blend-mode: overlay;
+
+            /* Animation: Slow infinite drift */
+            animation: drift 60s linear infinite;
+            will-change: background-position;
+
+            /* Interaction: Smooth transition */
+            transition: filter 0.5s ease;
+        }
+
+        /* Interactive: On hover, the pattern "wakes up" slightly */
+        .visual-break:hover .pattern-strip {
+            filter: grayscale(0%) contrast(1.0) opacity(0.5);
+            /* Color returns slightly */
+        }
+
+        @keyframes drift {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 400px 0;
+            }
+
+            /* Matches background-size for seamless loop */
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(74, 59, 74, 0.1);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: rgba(74, 59, 74, 0.7);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .visual-break {
+                height: 80px;
+            }
+
+            .footer-content {
+                flex-direction: column-reverse;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 480px) {
+            .cta-form {
+                flex-direction: row;
+                align-items: flex-end;
+                gap: 0;
+                border-bottom: 1px solid rgba(74, 59, 74, 0.3);
+                max-width: 480px;
+            }
+
+            .input-group {
+                border-bottom: none;
+                flex: 1;
+            }
+
+            .btn-submit {
+                margin: 0;
+                width: auto;
+                border-radius: 0;
+                padding: 16px 32px;
+                height: 100%;
+                background-color: transparent;
+                color: var(--pri-pur);
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-size: 0.9rem;
+            }
+
+            .btn-submit:hover {
+                transform: none;
+                box-shadow: none;
+                color: var(--txt-drk);
+            }
+        }
+
+        /* --- SELECTION COLOR --- */
+        ::selection {
+            background-color: var(--pri-pur);
+            color: var(--txt-lgt);
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--txt-drk);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(74, 59, 74, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Hover state for cursor */
+        body.hovering .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(175, 150, 173, 0.1);
+            border-color: var(--pri-pur);
+        }
+
+        /* Hide default cursor on desktop to prioritize custom one */
+        @media (match-any-hover: hover) {
+            body {
+                cursor: none;
+            }
+
+            a,
+            button,
+            input {
+                cursor: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="container">
+        <header>
+            <nav>
+                <a href="#" class="logo">VELLO</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
+        </header>
+    </div>
+
+    <main class="hero">
+        <div class="container hero-content">
+            <h1>Wellness with Velocity.</h1>
+            <p class="subheadline">The pharmacy experience, perfected. Trusted medicines delivered in minutes.</p>
+
+            <form class="cta-form" onsubmit="event.preventDefault();">
+                <div class="input-group">
+                    <input type="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="btn-submit">Join Waitlist</button>
+            </form>
+        </div>
+    </main>
+
+    <div class="visual-break">
+        <div class="pattern-strip"></div>
+    </div>
+
+    <div class="container">
+        <footer>
+            <div class="footer-content">
+                <div class="copyright">&copy; 2026 Vello Technologies.</div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/vello1">LinkedIn</a>
+                    <a
+                        href="https://www.instagram.com/vello24x7?igsh=MXRmb3B6bGRnbGJnOA%3D%3D&utm_source=qr">Instagram</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        // Hide cursor elements on touch devices
+        if ('ontouchstart' in window) {
+            cursorDot.style.display = 'none';
+            cursorOutline.style.display = 'none';
+        } else {
+            window.addEventListener('mousemove', function (e) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                // Dot follows immediately
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                // Outline follows with slight delay (using animation for smooth trail)
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+            // Add hover effect for interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, input');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+            });
+        }
+    </script>
+</body>
+
+</html>
