@@ -17,9 +17,9 @@
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
-            --bg-crm: #f2e5d4;
-            --pri-pur: #af96ad;
-            --txt-drk: #4a3b4a;
+            --bg-crm: #D6F3F4;
+            --pri-pur: #508991;
+            --txt-drk: #004346;
             --txt-lgt: #f9f5f0;
 
             /* USER: CHANGE HEADLINE FONT HERE */
@@ -100,10 +100,22 @@
             display: inline-block;
         }
 
+        .logo-img {
+            height: 120px;
+            /* Increased size significantly */
+            width: auto;
+            max-width: 400px;
+            display: block;
+            object-fit: contain;
+        }
+
         .nav-link {
             font-weight: 500;
             font-size: 0.9rem;
-            color: var(--txt-drk);
+            background-color: var(--txt-drk);
+            /* Solid dark background */
+            color: var(--txt-lgt);
+            /* Light text */
             border: 1px solid var(--txt-drk);
             padding: 10px 24px;
             border-radius: 50px;
@@ -111,9 +123,15 @@
         }
 
         .nav-link:hover {
-            background-color: var(--txt-drk);
-            color: var(--bg-crm);
+            background-color: var(--pri-pur);
+            /* Hover to purple */
+            border-color: var(--pri-pur);
+            color: var(--txt-lgt);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 59, 74, 0.4);
         }
+
+
 
         /* --- HERO SECTION --- */
         .hero {
@@ -453,7 +471,10 @@
     <div class="container">
         <header>
             <nav>
-                <a href="#" class="logo">VELLO</a>
+                <a href="#" class="logo-link">
+                    <!-- Updated to SVG as requested -->
+                    <img src="logo.svg" alt="VELLO" class="logo-img">
+                </a>
                 <a href="mailto:founders@vello.in" class="nav-link">Contact Us</a>
             </nav>
         </header>
