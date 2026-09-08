@@ -68,7 +68,7 @@ export function RxUpload({ files, onChange, initialError }: RxUploadProps) {
         onDragLeave={() => setOver(false)}
         onDrop={handleDrop}
         className={cx(
-          "flex min-h-32 cursor-pointer flex-col items-center justify-center gap-1 rounded-card border border-dashed bg-surface p-6 text-center",
+          "flex min-h-32 cursor-pointer flex-col items-center justify-center gap-1 rounded-card border border-dashed bg-surface p-6 text-center [&:has(:focus-visible)]:outline-2 [&:has(:focus-visible)]:outline-offset-2 [&:has(:focus-visible)]:outline-primary",
           over ? "border-primary" : "border-hairline hover:border-primary",
         )}
       >

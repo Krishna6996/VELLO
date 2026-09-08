@@ -69,7 +69,7 @@ export function ProductView({ sku, substitutes, header, visual, children }: Prod
       >
         <div className="flex flex-col gap-3 md:sticky md:top-20">
           <PriceCard sku={selected} qty={qty} onQtyChange={setQty} />
-          <p className="text-legal text-ink-faint">
+          <p className="text-legal text-ink-muted">
             Prices are printed MRPs. GST invoice sent after delivery. No hidden charges.
           </p>
         </div>

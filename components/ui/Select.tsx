@@ -23,7 +23,7 @@ export function Select({ label, hint, error, id, className, children, ...rest }:
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy(hint, error, hintId, errorId)}
           className={cx(
-            fieldClasses(Boolean(error), "h-13 appearance-none pr-10 md:h-12"),
+            fieldClasses(Boolean(error), "h-(--control-h) appearance-none pr-10"),
             className,
           )}
           {...rest}

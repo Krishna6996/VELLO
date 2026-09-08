@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { footerLinks, primaryNav, whatsappNav } from "@/components/layout/nav";
+import { LargeTypeToggle } from "@/components/layout/LargeTypeToggle";
+import { PseudoLocale } from "@/components/dev/PseudoLocale";
 import { Wordmark } from "@/components/layout/Wordmark";
 
 const licenceBlock: readonly string[] = [
@@ -9,8 +11,7 @@ const licenceBlock: readonly string[] = [
   "[Legal entity name] Private Limited. Registered office: DLF Prime Tower, Okhla, New Delhi.",
 ];
 
-const linkClass =
-  "inline-flex min-h-11 items-center text-body text-ink-secondary hover:text-ink md:min-h-9";
+const linkClass = "inline-flex min-h-11 items-center text-body text-ink-secondary hover:text-ink";
 
 export function Footer() {
   return (
@@ -39,6 +40,14 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <LargeTypeToggle />
+            </li>
+            {process.env.NODE_ENV === "development" ? (
+              <li>
+                <PseudoLocale />
+              </li>
+            ) : null}
           </ul>
         </nav>
 

@@ -34,8 +34,11 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
             <ul className="flex flex-wrap gap-2" aria-label="Molecules and concerns">
               {results.molecules.map((molecule) => (
                 <li key={molecule.molecule}>
-                  <Link href={`/search?q=${encodeURIComponent(molecule.molecule)}`}>
-                    <Pill className="min-h-9 hover:bg-primary hover:text-surface">
+                  <Link
+                    href={`/search?q=${encodeURIComponent(molecule.molecule)}`}
+                    className="inline-flex min-h-11 items-center"
+                  >
+                    <Pill className="motion-surface min-h-9 hover:bg-primary hover:text-surface">
                       {molecule.molecule} · {molecule.count}{" "}
                       {molecule.count === 1 ? "medicine" : "medicines"}
                     </Pill>
@@ -44,8 +47,11 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
               ))}
               {results.concerns.map((concern) => (
                 <li key={concern.slug}>
-                  <Link href={`/concerns/${concern.slug}`}>
-                    <Pill className="min-h-9 hover:bg-primary hover:text-surface">
+                  <Link
+                    href={`/concerns/${concern.slug}`}
+                    className="inline-flex min-h-11 items-center"
+                  >
+                    <Pill className="motion-surface min-h-9 hover:bg-primary hover:text-surface">
                       {concern.title}
                     </Pill>
                   </Link>

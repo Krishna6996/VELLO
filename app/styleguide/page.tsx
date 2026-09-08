@@ -61,7 +61,7 @@ function typeColour(token: TypeToken, onSurface: boolean): string {
     case "text-label":
       return "text-ink-muted";
     case "text-legal":
-      return "text-ink-faint";
+      return "text-ink-muted";
     default:
       return "text-ink";
   }
@@ -95,7 +95,7 @@ export default function StyleguidePage() {
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className="inline-flex min-h-9 items-center text-row font-medium text-primary hover:text-primary-pressed"
+                  className="inline-flex min-h-11 items-center text-row font-medium text-primary hover:text-primary-pressed"
                 >
                   {link.label}
                 </a>
@@ -105,7 +105,7 @@ export default function StyleguidePage() {
               <li key={page.href}>
                 <Link
                   href={page.href}
-                  className="inline-flex min-h-9 items-center text-row font-medium text-primary hover:text-primary-pressed"
+                  className="inline-flex min-h-11 items-center text-row font-medium text-primary hover:text-primary-pressed"
                 >
                   {page.label}
                 </Link>

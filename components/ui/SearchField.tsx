@@ -179,7 +179,7 @@ export function SearchField({
             }}
             onKeyDown={handleKeyDown}
             className={cx(
-              "w-full rounded-input border border-hairline bg-surface text-ink focus:border-primary focus:outline focus:outline-[1.5px] focus:-outline-offset-[1.5px] focus:outline-primary [&::-webkit-search-cancel-button]:hidden",
+              "w-full rounded-input border border-hairline bg-surface text-ink focus:border-primary [&::-webkit-search-cancel-button]:hidden",
               variant === "hero" ? "h-14 px-4 text-input" : "h-11 px-3.5 text-body",
             )}
           />

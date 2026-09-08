@@ -28,7 +28,9 @@ export function CartLineRow({ line, onQtyChange, onRemove }: CartLineRowProps) {
             <span className="text-card text-ink">{sku.brand}</span>
             <MedicineLine sku={sku} />
           </div>
-          <span className="shrink-0 text-price text-ink tabular-nums">{rupees(sku.mrp * qty)}</span>
+          <span data-pseudo-skip className="shrink-0 text-price text-ink tabular-nums">
+            {rupees(sku.mrp * qty)}
+          </span>
         </div>
         {onQtyChange ? (
           <div className="flex items-center justify-between gap-3">
@@ -44,7 +46,7 @@ export function CartLineRow({ line, onQtyChange, onRemove }: CartLineRowProps) {
             ) : null}
           </div>
         ) : (
-          <span className="text-row text-ink-muted">
+          <span data-pseudo-skip className="text-row text-ink-muted">
             {qty} × {rupees(sku.mrp)}
           </span>
         )}

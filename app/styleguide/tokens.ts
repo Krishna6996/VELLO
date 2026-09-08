@@ -32,8 +32,16 @@ export const colourTokens: readonly ColourToken[] = [
   },
   { name: "ink", hex: "#1E2A28", role: "Primary text. Near-black, green undertone." },
   { name: "ink-secondary", hex: "#3D4B47", role: "Body copy inside cards." },
-  { name: "ink-muted", hex: "#6B7A74", role: "Labels, metadata, molecule and strength lines." },
-  { name: "ink-faint", hex: "#9AA5A0", role: "Placeholders, legal, disabled." },
+  {
+    name: "ink-muted",
+    hex: "#5F6E68",
+    role: "Labels, metadata, molecule lines, legal text. 5.1:1 on canvas, 4.6:1 on sage.",
+  },
+  {
+    name: "ink-faint",
+    hex: "#9AA5A0",
+    role: "Disabled controls and decorative rings only. Never running text: 2.4:1.",
+  },
   { name: "hairline", hex: "#E3DED5", role: "Card borders, 1px." },
   { name: "divider", hex: "#E8E3DA", role: "Dividers between rows." },
   { name: "amber", hex: "#D98E32", role: "Sparingly. Refill nudges and time-based warmth only." },
@@ -41,8 +49,8 @@ export const colourTokens: readonly ColourToken[] = [
   { name: "amber-border", hex: "#ECD9BC", role: "The refill card border only." },
   {
     name: "amber-ink",
-    hex: "#B0761F",
-    role: "Time text such as “Runs out in 6 days”. Passes contrast on cream.",
+    hex: "#946318",
+    role: "Time text such as “Runs out in 6 days”. 4.9:1 on canvas and surface.",
   },
   { name: "dose-morning", hex: "#EEC27E", role: "Dose glyph, morning. Only inside DoseGlyphs." },
   {
@@ -102,7 +110,7 @@ export const typeTokens: readonly TypeToken[] = [
     desktop: "52px",
     mobile: "26px",
     weight: 800,
-    leading: "1.08",
+    leading: "1.15",
     tracking: "-0.02em",
     sample: "Medicine, exactly as prescribed.",
   },
@@ -222,7 +230,7 @@ export const typeTokens: readonly TypeToken[] = [
     desktop: "38px",
     mobile: "29px",
     weight: 500,
-    leading: "1.2",
+    leading: "1.25",
     sample: "What metformin does, and what it doesn't",
   },
   {

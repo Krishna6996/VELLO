@@ -61,15 +61,15 @@ function Labels({ step, state }: { step: TimelineStep; state: NodeState }) {
   const future = state === "future";
   return (
     <span className="flex min-w-0 flex-col">
-      <span className={cx("text-body font-medium", future ? "text-ink-faint" : "text-ink")}>
+      <span className={cx("text-body font-medium", future ? "text-ink-muted" : "text-ink")}>
         {step.label}
       </span>
       {step.sub ? (
-        <span className={cx("text-row", future ? "text-ink-faint" : "text-ink-muted")}>
+        <span className={cx("text-row", future ? "text-ink-muted" : "text-ink-muted")}>
           {step.sub}
         </span>
       ) : null}
-      {step.time ? <span className="text-legal text-ink-faint">{step.time}</span> : null}
+      {step.time ? <span className="text-legal text-ink-muted">{step.time}</span> : null}
       {step.aside ? <span className="mt-3 block">{step.aside}</span> : null}
     </span>
   );

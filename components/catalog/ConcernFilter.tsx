@@ -10,7 +10,7 @@ interface ConcernFilterProps {
 }
 
 const pill =
-  "motion-surface inline-flex min-h-11 items-center rounded-pill border px-4 text-row font-semibold md:min-h-10";
+  "motion-surface inline-flex min-h-11 items-center rounded-pill border px-4 text-row font-semibold";
 
 /** Pill tabs as links, so a filtered list has a URL. Selected is a solid Primary pill. */
 export function ConcernFilter({ basePath, selected }: ConcernFilterProps) {

@@ -57,6 +57,7 @@
 - Grievance officer: [name], grievance@vello.in. We respond within 48 hours.
 - [Legal entity name] Private Limited. Registered office: DLF Prime Tower, Okhla, New Delhi.
 - Links: Privacy · Terms · Returns · Shipping · Grievance · Large type
+- Large type control: a switch labelled "Large type", pressed when on
 
 ## Medicines listing
 - h1: Medicines
@@ -116,6 +117,7 @@
 - Dropzone: Add a photo or PDF of your prescription
 - Dropzone hint: JPG, PNG or PDF, under 10 MB
 - Choice errors: Choose a delivery slot. / Choose how you'll pay.
+- Announcement when the pincode is the only blocker: Check the pincode before placing the order.
 - Rx WhatsApp link: I'll send it on WhatsApp instead
 - Rx missing note: If it's missing, the pharmacist will message you before doing anything.
 - Pincode check: Check my pincode

@@ -68,7 +68,7 @@ export function MedicineCard({
           <RxMark schedule={sku.schedule} className="mt-1" />
         ) : null}
       </span>
-      <span className="shrink-0 pt-0.5 text-right">
+      <span className="shrink-0 pt-0.5 text-right" data-pseudo-skip={sku.inStock || undefined}>
         {sku.inStock ? (
           <span className="text-price text-ink tabular-nums">{rupees(sku.mrp)}</span>
         ) : (

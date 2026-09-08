@@ -18,7 +18,7 @@ export default function MotionPage() {
         </p>
         <Link
           href="/styleguide"
-          className="inline-flex min-h-9 items-center self-start text-row font-medium text-primary hover:text-primary-pressed"
+          className="inline-flex min-h-11 items-center self-start text-row font-medium text-primary hover:text-primary-pressed"
         >
           Styleguide
         </Link>

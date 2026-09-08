@@ -27,12 +27,12 @@ export function DoseGlyphs({ pattern, note, className }: DoseGlyphsProps) {
 
   return (
     <span className={cx("inline-flex items-center gap-2", className)}>
-      <span aria-hidden="true" className="inline-flex items-center gap-1">
+      <span role="img" aria-label={caption} className="inline-flex items-center gap-1">
         {taken.map((filled, index) => (
           <span
             key={slots[index]}
             className={cx(
-              "block size-[11px] origin-center rounded-pill",
+              "block size-(--dose-dot) origin-center rounded-pill",
               filled ? slots[index] : "border-[1.5px] border-dose-empty",
             )}
             style={
@@ -46,7 +46,9 @@ export function DoseGlyphs({ pattern, note, className }: DoseGlyphsProps) {
           />
         ))}
       </span>
-      <span className="text-legal text-ink-muted">{caption}</span>
+      <span aria-hidden="true" className="text-legal text-ink-muted">
+        {caption}
+      </span>
     </span>
   );
 }

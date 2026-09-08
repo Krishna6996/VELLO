@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { LargeTypeToggle } from "@/components/layout/LargeTypeToggle";
 import { Sheet } from "@/components/ui/Sheet";
 import type { NavLink } from "@/components/layout/nav";
+import { cx } from "@/lib/cx";
 
 interface MobileNavProps {
   links: readonly NavLink[];
+  /** Show the menu on desktop too, when the inline nav doesn't fit. */
+  alwaysVisible?: boolean;
 }
 
-export function MobileNav({ links }: MobileNavProps) {
+export function MobileNav({ links, alwaysVisible = false }: MobileNavProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,7 +24,10 @@ export function MobileNav({ links }: MobileNavProps) {
         aria-label="Menu"
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="-mr-2 inline-flex size-11 items-center justify-center rounded-input text-primary hover:bg-sage md:hidden"
+        className={cx(
+          "-mr-2 inline-flex size-11 items-center justify-center rounded-input text-primary hover:bg-sage",
+          !alwaysVisible && "lg:hidden",
+        )}
       >
         <svg
           aria-hidden="true"
@@ -52,6 +59,9 @@ export function MobileNav({ links }: MobileNavProps) {
             ))}
           </ul>
         </nav>
+        <div className="mt-2 border-t border-divider pt-2">
+          <LargeTypeToggle />
+        </div>
       </Sheet>
     </>
   );

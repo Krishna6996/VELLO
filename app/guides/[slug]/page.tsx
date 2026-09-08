@@ -54,7 +54,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
         </ol>
       </section>
 
-      <p className="mt-10 border-t border-hairline pt-4 text-legal text-ink-faint">
+      <p className="mt-10 border-t border-hairline pt-4 text-legal text-ink-muted">
         This guide is for understanding, not for deciding treatment. Your doctor knows your history;
         follow what they wrote.
       </p>

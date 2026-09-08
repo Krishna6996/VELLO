@@ -16,14 +16,14 @@
   --color-sage: #e4f0ea;
   --color-ink: #1e2a28;
   --color-ink-secondary: #3d4b47;
-  --color-ink-muted: #6b7a74;
+  --color-ink-muted: #5f6e68;
   --color-ink-faint: #9aa5a0;
   --color-hairline: #e3ded5;
   --color-divider: #e8e3da;
   --color-amber: #d98e32;
   --color-amber-tint: #fbf3e6;
   --color-amber-border: #ecd9bc;
-  --color-amber-ink: #b0761f;
+  --color-amber-ink: #946318;
 
   /* Dose-time glyphs (design-system.md §7): morning, afternoon, night, empty ring */
   --color-dose-morning: #eec27e;
@@ -73,7 +73,7 @@
   --text-wordmark--letter-spacing: -0.03em;
 
   --text-hero: var(--fs-hero);
-  --text-hero--line-height: 1.08;
+  --text-hero--line-height: 1.15;
   --text-hero--font-weight: 800;
   --text-hero--letter-spacing: -0.02em;
 
@@ -115,7 +115,7 @@
 
   /* Editorial (design-system.md §4, desktop-extension.md): Fraunces headlines and subheads */
   --text-article-headline: var(--fs-article-headline);
-  --text-article-headline--line-height: 1.2;
+  --text-article-headline--line-height: 1.25;
   --text-article-headline--font-weight: 500;
 
   --text-article-subhead: var(--fs-article-subhead);
@@ -127,7 +127,7 @@
   --text-button--line-height: 1;
   --text-button--font-weight: 600;
 
-  --text-input: 15px;
+  --text-input: var(--fs-input);
   --text-input--line-height: 1.4;
   --text-input--font-weight: 400;
 
@@ -143,6 +143,9 @@
 
 /* Mobile sizes (design-system.md §4) */
 :root {
+  --dose-dot: 11px;
+  --control-h: 52px;
+  --fs-input: 15px;
   --fs-hero: 26px;
   --fs-h1: 22px;
   --fs-section: 16px;
@@ -160,6 +163,7 @@
 /* Desktop sizes (desktop-extension.md), 768px and above */
 @media (min-width: 768px) {
   :root {
+    --control-h: 48px;
     --fs-hero: 52px;
     --fs-h1: 34px;
     --fs-section: 24px;
@@ -214,9 +218,29 @@
   }
 
   ::placeholder {
-    color: var(--color-ink-faint);
+    color: var(--color-ink-muted);
     opacity: 1;
   }
+
+  /* Focus: a 2px Primary ring, 2px out, on every interactive element, on canvas and on sage. */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/*
+  Large type (design-system.md §12 item 6). Toggled by LargeTypeToggle,
+  persisted in localStorage, applied as a class on <html> before first paint.
+  Body 17px, card title 17px, medicine line 14px, dose dots 14px, controls 56px.
+*/
+html.large-type {
+  --fs-body: 17px;
+  --fs-card: 17px;
+  --fs-meta: 14px;
+  --fs-input: 17px;
+  --dose-dot: 14px;
+  --control-h: 56px;
 }
 
 /*

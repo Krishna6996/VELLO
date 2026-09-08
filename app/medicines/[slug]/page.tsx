@@ -70,7 +70,7 @@ export default async function MedicinePage({ params }: PageProps<"/medicines/[sl
       <nav aria-label="Breadcrumb">
         <ol className="flex flex-wrap items-center gap-x-2 text-row text-ink-muted">
           <li>
-            <Link href="/medicines" className="inline-flex min-h-9 items-center hover:text-ink">
+            <Link href="/medicines" className="inline-flex min-h-11 items-center hover:text-ink">
               Medicines
             </Link>
           </li>
@@ -78,13 +78,13 @@ export default async function MedicinePage({ params }: PageProps<"/medicines/[sl
           <li>
             <Link
               href={`/concerns/${concern.slug}`}
-              className="inline-flex min-h-9 items-center hover:text-ink"
+              className="inline-flex min-h-11 items-center hover:text-ink"
             >
               {concern.title}
             </Link>
           </li>
           <li aria-hidden="true">›</li>
-          <li aria-current="page" className="inline-flex min-h-9 items-center">
+          <li aria-current="page" className="inline-flex min-h-11 items-center">
             {sku.brand}
           </li>
         </ol>

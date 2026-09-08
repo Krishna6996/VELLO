@@ -70,6 +70,7 @@ export function CheckoutForm() {
   const [payment, setPayment] = useState<PaymentMethod | "">("");
   const [errors, setErrors] = useState<Errors>({});
   const [placing, setPlacing] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
 
   function clearError(key: keyof Errors) {
     setErrors((current) => (current[key] ? { ...current, [key]: undefined } : current));
@@ -120,7 +121,14 @@ export function CheckoutForm() {
     setErrors(next);
     const status = checkPincode(pincode);
     setPincodeStatus(status);
-    if (Object.keys(next).length > 0 || status !== "serviceable" || !slot || !payment) return;
+    const problems = Object.values(next).filter((message): message is string => Boolean(message));
+    if (problems.length > 0 || status !== "serviceable" || !slot || !payment) {
+      setAnnouncement(problems[0] ?? "Check the pincode before placing the order.");
+      const firstInvalid = event.currentTarget.querySelector<HTMLElement>('[aria-invalid="true"]');
+      firstInvalid?.focus();
+      return;
+    }
+    setAnnouncement("");
 
     setPlacing(true);
     const order = placeOrder({
@@ -149,6 +157,9 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+      <p role="status" aria-live="polite" className="sr-only">
+        {announcement}
+      </p>
       <SectionCard id="your-order" title="Your order">
         <ul className="flex flex-col divide-y divide-divider">
           {lines.map((line) => (
@@ -306,7 +317,7 @@ export function CheckoutForm() {
         <Button type="submit" fullWidth loading={placing}>
           Place order
         </Button>
-        <p className="text-legal text-ink-faint">
+        <p className="text-legal text-ink-muted">
           By placing this order you agree that Vello and the dispensing pharmacy may store your
           prescription to fulfil it.{" "}
           <Link

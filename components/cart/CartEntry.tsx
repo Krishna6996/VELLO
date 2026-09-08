@@ -20,13 +20,16 @@ export function CartEntry() {
         onClick={() => setOpen(true)}
         aria-label={count > 0 ? `Order, ${count} ${count === 1 ? "item" : "items"}` : "Order"}
         className={cx(
-          "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-input px-1 text-body font-medium text-ink-secondary hover:text-ink md:inline-flex",
+          "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-input px-1 text-body font-medium whitespace-nowrap text-ink-secondary hover:text-ink lg:inline-flex",
           count === 0 && "hidden",
         )}
       >
-        <span className="hidden md:inline">Order</span>
+        <span className="hidden lg:inline">Order</span>
         {count > 0 ? (
-          <span className="inline-flex min-h-6 min-w-6 items-center justify-center rounded-pill bg-sage px-2 text-legal font-semibold text-primary tabular-nums">
+          <span
+            data-pseudo-skip
+            className="inline-flex min-h-6 min-w-6 items-center justify-center rounded-pill bg-sage px-2 text-legal font-semibold text-primary tabular-nums"
+          >
             {count}
           </span>
         ) : null}

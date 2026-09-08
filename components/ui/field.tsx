@@ -8,10 +8,9 @@ import { cx } from "@/lib/cx";
  */
 export function fieldClasses(invalid: boolean, extra?: string): string {
   return cx(
-    "w-full rounded-input border bg-surface px-3.5 text-input text-ink",
-    "focus:border-primary focus:outline focus:outline-[1.5px] focus:-outline-offset-[1.5px] focus:outline-primary",
+    "w-full rounded-input border bg-surface px-3.5 text-input text-ink focus:border-primary",
     invalid
-      ? "border-ink outline outline-[1.5px] -outline-offset-[1.5px] outline-ink"
+      ? "border-ink outline outline-[1.5px] -outline-offset-[1.5px] outline-ink focus:outline-none"
       : "border-hairline",
     extra,
   );

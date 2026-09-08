@@ -9,15 +9,18 @@ interface FadeSwapProps {
   watch: string | number;
   children: ReactNode;
   className?: string;
+  /** Numbers and marks don't translate; keep them out of the pseudo-locale. */
+  skipPseudo?: boolean;
 }
 
 /** Opacity only, 180ms, on the text that changed and nothing else. */
-export function FadeSwap({ watch, children, className }: FadeSwapProps) {
+export function FadeSwap({ watch, children, className, skipPseudo }: FadeSwapProps) {
   const { reduced, duration } = useCalmMotion();
   return (
     <span
       key={String(watch)}
       className={className}
+      data-pseudo-skip={skipPseudo || undefined}
       style={{
         display: "block",
         animation: reduced

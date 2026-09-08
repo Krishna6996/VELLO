@@ -3,6 +3,7 @@ import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { OfflineBar } from "@/components/layout/OfflineBar";
+import { largeTypeBootScript } from "@/lib/large-type-boot";
 import { motionCssVars } from "@/lib/motion";
 import "./globals.css";
 
@@ -32,7 +33,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${plusJakarta.variable} ${fraunces.variable} h-full`}
       style={motionCssVars}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: largeTypeBootScript }} />
+      </head>
       <body className="flex min-h-full flex-col bg-canvas text-ink">
         <Header />
         <OfflineBar />

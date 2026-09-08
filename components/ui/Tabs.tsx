@@ -31,7 +31,7 @@ export function Tab({ value, label, initial, disabled }: TabProps) {
       value={value}
       disabled={disabled}
       className={cx(
-        "group motion-surface inline-flex min-h-11 items-center gap-2 rounded-pill border border-hairline bg-surface py-1.5 pr-4 text-row font-semibold text-ink-secondary md:min-h-10",
+        "group motion-surface inline-flex min-h-11 items-center gap-2 rounded-pill border border-hairline bg-surface py-1.5 pr-4 text-row font-semibold text-ink-secondary",
         initial ? "pl-1.5" : "pl-4",
         "data-[state=active]:border-primary data-[state=active]:bg-primary data-[state=active]:text-surface",
       )}

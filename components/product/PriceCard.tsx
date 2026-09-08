@@ -36,7 +36,7 @@ export function PriceCard({ sku, qty, onQtyChange }: PriceCardProps) {
     <Card className="flex flex-col gap-5">
       {sku.inStock ? (
         <div className="flex flex-col gap-1">
-          <FadeSwap watch={sku.slug} className="text-price-hero text-ink tabular-nums">
+          <FadeSwap watch={sku.slug} className="text-price-hero text-ink tabular-nums" skipPseudo>
             {rupees(sku.mrp)}
           </FadeSwap>
           <FadeSwap watch={sku.slug} className="text-row text-ink-muted">

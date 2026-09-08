@@ -21,7 +21,7 @@ export function Input({ label, hint, error, id, className, ...rest }: InputProps
         id={inputId}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy(hint, error, hintId, errorId)}
-        className={cx(fieldClasses(Boolean(error), "h-13 md:h-12"), className)}
+        className={cx(fieldClasses(Boolean(error), "h-(--control-h)"), className)}
         {...rest}
       />
     </Field>
