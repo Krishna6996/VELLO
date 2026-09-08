@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { CartLineRow } from "@/components/cart/CartLineRow";
 import { buttonClasses } from "@/components/ui/Button";
+import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { ReassuranceBlock } from "@/components/ui/ReassuranceBlock";
 import { Sheet } from "@/components/ui/Sheet";
 import { TotalsBlock } from "@/components/ui/TotalsBlock";
@@ -35,6 +36,11 @@ export function CartSheet() {
           >
             Medicines
           </Link>
+          <PhotoPlaceholder
+            aspect="4/3"
+            caption="A folded prescription on a kitchen table beside a pair of reading glasses"
+            className="mt-2"
+          />
         </div>
       ) : (
         <div className="flex flex-col gap-5">

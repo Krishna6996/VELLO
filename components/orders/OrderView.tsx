@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { CartLineRow } from "@/components/cart/CartLineRow";
+import { DelayedCard, OnHoldCard, RejectedCard } from "@/components/orders/OrderStates";
 import { StampIn } from "@/components/motion/StampIn";
 import { Card } from "@/components/ui/Card";
 import { Select } from "@/components/ui/Select";
@@ -24,7 +25,14 @@ import {
   timelineLabels,
   verifiedAt,
 } from "@/lib/order-view";
-import { useOrders, type Order, type OrderStatus } from "@/lib/orders";
+import { getBySlug, getSubstitutes } from "@/lib/catalog/queries";
+import {
+  rejectionReasons,
+  useOrders,
+  type Order,
+  type OrderStatus,
+  type RejectionReason,
+} from "@/lib/orders";
 import { useOrdersHydrated } from "@/lib/use-hydrated";
 
 const statuses: readonly OrderStatus[] = [
@@ -75,6 +83,8 @@ export function OrderView({ id }: { id: string }) {
   const hydrated = useOrdersHydrated();
   const order = useOrders((state) => state.orders.find((o) => o.id === id));
   const setStatus = useOrders((state) => state.setStatus);
+  const update = useOrders((state) => state.update);
+  const resolveHold = useOrders((state) => state.resolveHold);
 
   if (!hydrated) {
     return (
@@ -92,6 +102,8 @@ export function OrderView({ id }: { id: string }) {
   const current = currentStep(order.status);
   const verifiedDate = formatDate(verifiedAt(order));
   const first = lines[0];
+  const held = order.hold ? getBySlug(order.hold.slug) : undefined;
+  const heldSubstitute = order.hold ? getBySlug(order.hold.substitute) : undefined;
 
   const steps: TimelineStep[] = timelineLabels.map((label, index) => {
     const step: TimelineStep = { label };
@@ -162,22 +174,24 @@ export function OrderView({ id }: { id: string }) {
       </header>
 
       {order.status === "rejected" ? (
-        <Card className="max-w-list">
-          <p className="text-body text-ink">
-            We couldn&apos;t dispense this order because the prescription was too unclear to read.
-            Nothing has been charged. Send a clearer prescription on WhatsApp and a pharmacist will
-            look at it right away.
-          </p>
-        </Card>
+        <RejectedCard
+          reason={order.rejectionReason ?? "the prescription was too unclear to read"}
+          orderId={order.id}
+          pincode={order.address.pincode}
+        />
       ) : null}
 
-      {order.status === "on-hold" && first ? (
-        <Card className="max-w-list">
-          <p className="text-body text-ink">
-            {first.sku.brand} isn&apos;t in stock at the pharmacy right now. The pharmacist suggests
-            an equivalent, the same molecule at the same strength, at its printed MRP.
-          </p>
-        </Card>
+      {order.status === "on-hold" && held && heldSubstitute ? (
+        <OnHoldCard
+          held={held}
+          substitute={heldSubstitute}
+          onAccept={() => resolveHold(order.id, true)}
+          onDecline={() => resolveHold(order.id, false)}
+        />
+      ) : null}
+
+      {order.status === "out-for-delivery" && order.delayedUntil ? (
+        <DelayedCard newTime={order.delayedUntil} rider={RIDER} />
       ) : null}
 
       <Timeline steps={steps} current={current} className="max-w-list" />
@@ -221,11 +235,31 @@ export function OrderView({ id }: { id: string }) {
       </Card>
 
       {process.env.NODE_ENV === "development" ? (
-        <div className="max-w-xs">
+        <div className="grid max-w-list gap-4 md:grid-cols-2">
           <Select
             label="Status (development only)"
             value={order.status}
-            onChange={(event) => setStatus(order.id, event.target.value as OrderStatus)}
+            onChange={(event) => {
+              const status = event.target.value as OrderStatus;
+              if (status === "on-hold" && first) {
+                const substitute = getSubstitutes(first.sku.slug).find((s) => s.inStock);
+                update(order.id, {
+                  status,
+                  hold: substitute
+                    ? { slug: first.sku.slug, substitute: substitute.slug }
+                    : undefined,
+                });
+                return;
+              }
+              if (status === "out-for-delivery") {
+                update(order.id, {
+                  status,
+                  delayedUntil: order.delayedUntil,
+                });
+                return;
+              }
+              setStatus(order.id, status);
+            }}
           >
             {statuses.map((status) => (
               <option key={status} value={status}>
@@ -233,6 +267,38 @@ export function OrderView({ id }: { id: string }) {
               </option>
             ))}
           </Select>
+          {order.status === "rejected" ? (
+            <Select
+              label="Reason (development only)"
+              value={order.rejectionReason ?? rejectionReasons[0]}
+              onChange={(event) =>
+                update(order.id, { rejectionReason: event.target.value as RejectionReason })
+              }
+            >
+              {rejectionReasons.map((reason) => (
+                <option key={reason} value={reason}>
+                  {reason}
+                </option>
+              ))}
+            </Select>
+          ) : null}
+          {order.status === "out-for-delivery" ? (
+            <Select
+              label="Delay (development only)"
+              value={order.delayedUntil ? "delayed" : "on-time"}
+              onChange={(event) =>
+                update(order.id, {
+                  delayedUntil:
+                    event.target.value === "delayed"
+                      ? new Date(Date.now() + 45 * 60_000).toISOString()
+                      : undefined,
+                })
+              }
+            >
+              <option value="on-time">on time</option>
+              <option value="delayed">delayed</option>
+            </Select>
+          ) : null}
         </div>
       ) : null}
     </div>

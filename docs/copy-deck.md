@@ -152,10 +152,13 @@
 
 ## States
 - Rejected: We couldn't dispense this order because {reason}. Nothing has been charged. Send a clearer prescription on WhatsApp and a pharmacist will look at it right away.
-- Reasons: the prescription was too unclear to read / the doctor's name or registration number is missing / this medicine isn't on the prescription / the prescription is older than six months
+- Reasons: the prescription was too unclear to read / the doctor's name or registration number is missing / this medicine isn't on the prescription / the prescription is older than six months / there was nothing left to dispense
+- Rejected button: Send a new prescription on WhatsApp
 - On hold: {brand} isn't in stock at the pharmacy right now. The pharmacist suggests {substitute}, the same molecule at the same strength, at its printed MRP. / Yes, use this / No, cancel that line
 - Delayed: Running late. New time: {time}. {rider} will call when close.
 - Upload failed: That file didn't upload. Use a JPG, PNG or PDF under 10 MB.
+- On hold, price line: The price shown is the printed MRP.
+- Empty cart photo caption (placeholder): A folded prescription on a kitchen table beside a pair of reading glasses
 - Offline: You're offline. We'll retry when you're back.
 - 404: We don't have a page here.
 

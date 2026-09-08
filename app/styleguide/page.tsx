@@ -41,7 +41,10 @@ const sectionLinks = [
   { id: "whatsapp", label: "WhatsApp" },
 ] as const;
 
-const subpages = [{ href: "/styleguide/motion", label: "Motion" }] as const;
+const subpages = [
+  { href: "/styleguide/motion", label: "Motion" },
+  { href: "/styleguide/states", label: "States" },
+] as const;
 
 function swatchStyle(name: string): CSSProperties {
   return { backgroundColor: `var(--color-${name})` };

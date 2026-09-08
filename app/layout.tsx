@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { OfflineBar } from "@/components/layout/OfflineBar";
 import { motionCssVars } from "@/lib/motion";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col bg-canvas text-ink">
         <Header />
+        <OfflineBar />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

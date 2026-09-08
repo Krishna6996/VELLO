@@ -6,6 +6,8 @@ import { cx } from "@/lib/cx";
 interface RxUploadProps {
   files: readonly File[];
   onChange: (files: File[]) => void;
+  /** Shows the failed-upload line from the start, for the styleguide. */
+  initialError?: string;
 }
 
 const accepted = new Set(["image/jpeg", "image/png", "application/pdf"]);
@@ -21,9 +23,9 @@ function isAcceptable(file: File): boolean {
  * A dropzone for prescriptions: images or PDF, more than one allowed. Rejected
  * files get one plain sentence, in Ink, never red.
  */
-export function RxUpload({ files, onChange }: RxUploadProps) {
+export function RxUpload({ files, onChange, initialError }: RxUploadProps) {
   const inputId = useId();
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(initialError ?? null);
   const [over, setOver] = useState(false);
 
   const previews = useMemo(
