@@ -175,6 +175,8 @@
 ## Guides
 - h1: Guides
 - Reading time (guide card): {n} min read
+- Share link: Share / Link copied
+- Sources head: Sources
 - Byline: Written by {author}, {authorReg}. Reviewed by {reviewer}, {reviewerReg}. Published {published}. Updated {updated}.
 - Disclaimer: This guide is for understanding, not for deciding treatment. Your doctor knows your history; follow what they wrote.
 

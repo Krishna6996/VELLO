@@ -7,9 +7,10 @@ import { ReassuranceBlock } from "@/components/ui/ReassuranceBlock";
 import { ConcernIcon } from "@/components/vocabulary/ConcernIcon";
 import { IconWell } from "@/components/vocabulary/Glyph";
 import { concernBySlug, concernSlugs } from "@/lib/catalog/concerns";
-import { getByConcern, getGuidesForConcern } from "@/lib/catalog/queries";
+import { getByConcern } from "@/lib/catalog/queries";
 import { spotCaptions } from "@/lib/catalog/spot-captions";
 import type { ConcernSlug } from "@/lib/catalog/types";
+import { getGuidesForConcern } from "@/lib/guides";
 
 /** Where a counter can make someone feel watched, the hub says so in one line. */
 const discreet = new Set<ConcernSlug>(["sexual-health", "mind-sleep", "periods"]);
@@ -36,7 +37,7 @@ export default async function ConcernPage({ params }: PageProps<"/concerns/[slug
   if (!isConcern(slug)) notFound();
   const concern = concernBySlug[slug];
   const skus = getByConcern(slug);
-  const guides = getGuidesForConcern(slug);
+  const guides = await getGuidesForConcern(slug);
 
   return (
     <div className="mx-auto flex w-full max-w-page flex-col gap-12 px-6 py-10 md:gap-16 md:px-10 md:py-16 lg:px-12">

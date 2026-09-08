@@ -11,6 +11,8 @@ import { concernBySlug } from "@/lib/catalog/concerns";
 import { getAll, getBySlug, getSubstitutes } from "@/lib/catalog/queries";
 import type { Sku } from "@/lib/catalog/types";
 import { medicineLine } from "@/lib/format";
+import { getGuidesForConcerns } from "@/lib/guides";
+import { GuideCard } from "@/components/guides/GuideCard";
 
 export function generateStaticParams() {
   return getAll().map((sku) => ({ slug: sku.slug }));
@@ -61,6 +63,7 @@ export default async function MedicinePage({ params }: PageProps<"/medicines/[sl
 
   const concern = concernBySlug[sku.concerns[0]];
   const substitutes = getSubstitutes(sku.slug);
+  const guides = (await getGuidesForConcerns(sku.concerns)).slice(0, 2);
 
   const header = (
     <div className="flex flex-col gap-4">
@@ -136,6 +139,24 @@ export default async function MedicinePage({ params }: PageProps<"/medicines/[sl
         <Section id="manufacturer" title="Manufacturer">
           <p className="max-w-measure text-body text-ink-secondary">{sku.manufacturer}</p>
         </Section>
+        {guides.length > 0 ? (
+          <Section id="guides" title={`Guides for ${concern.title.toLowerCase()}`}>
+            <ul className="grid gap-3 md:grid-cols-2">
+              {guides.map((guide) => (
+                <li key={guide.slug} className="flex">
+                  <GuideCard
+                    title={guide.title}
+                    href={`/guides/${guide.slug}`}
+                    excerpt={guide.excerpt}
+                    byline={guide.byline}
+                    readingMinutes={guide.readingMinutes}
+                    className="flex-1"
+                  />
+                </li>
+              ))}
+            </ul>
+          </Section>
+        ) : null}
       </ProductView>
     </div>
   );

@@ -13,6 +13,7 @@ import { VerificationSeal } from "@/components/vocabulary/VerificationSeal";
 import { WhatsAppOrderCard } from "@/components/whatsapp/WhatsAppOrderCard";
 import { concerns } from "@/lib/catalog/concerns";
 import { getBySlug, getSubstitutes } from "@/lib/catalog/queries";
+import { getGuides } from "@/lib/guides";
 
 const container = "mx-auto w-full max-w-page px-6 md:px-10 lg:px-12";
 
@@ -42,9 +43,10 @@ const guideStubs = [
   "Reading a blood pressure number",
 ];
 
-export default function Home() {
+export default async function Home() {
   const glycomet = getBySlug("glycomet-500-sr");
   const substitutes = getSubstitutes("glycomet-500-sr");
+  const guides = (await getGuides()).slice(0, 3);
 
   return (
     <div className="flex flex-col gap-16 pb-16 md:gap-24 md:pb-24">
@@ -140,11 +142,29 @@ export default function Home() {
           Guides, written by doctors, reviewed by doctors
         </h2>
         <ul className="grid gap-3 md:grid-cols-3 md:gap-4">
-          {guideStubs.map((title) => (
-            <li key={title} className="flex">
-              <GuideCard title={title} href="/guides" byline="Dr. Achal, MBBS" className="flex-1" />
-            </li>
-          ))}
+          {guides.length >= 3
+            ? guides.map((guide) => (
+                <li key={guide.slug} className="flex">
+                  <GuideCard
+                    title={guide.title}
+                    href={`/guides/${guide.slug}`}
+                    excerpt={guide.excerpt}
+                    byline={guide.byline}
+                    readingMinutes={guide.readingMinutes}
+                    className="flex-1"
+                  />
+                </li>
+              ))
+            : guideStubs.map((title) => (
+                <li key={title} className="flex">
+                  <GuideCard
+                    title={title}
+                    href="/guides"
+                    byline="Dr. Achal, MBBS"
+                    className="flex-1"
+                  />
+                </li>
+              ))}
         </ul>
       </section>
 

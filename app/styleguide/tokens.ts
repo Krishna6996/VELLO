@@ -147,7 +147,7 @@ export const typeTokens: readonly TypeToken[] = [
     name: "Article body",
     utility: "text-article",
     desktop: "17px",
-    mobile: "15px",
+    mobile: "16px",
     weight: 400,
     leading: "1.75",
     sample:

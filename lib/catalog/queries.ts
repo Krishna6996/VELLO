@@ -55,29 +55,3 @@ export function getAllSorted(): Sku[] {
     return ca - cb || a.brand.localeCompare(b.brand);
   });
 }
-
-export interface RelatedGuide {
-  slug: string;
-  title: string;
-  excerpt: string;
-  byline: string;
-  readingMinutes: number;
-  concerns: readonly ConcernSlug[];
-}
-
-/** Filled when guides exist (prompt 10). Until then there are none to relate. */
-const guideRegistry: RelatedGuide[] = [];
-
-export function getGuidesForConcern(concern: ConcernSlug): RelatedGuide[] {
-  return guideRegistry.filter((guide) => guide.concerns.includes(concern));
-}
-
-/** Guides matching any of the SKU's concerns. */
-export function getRelatedGuides(slug: string): RelatedGuide[] {
-  const sku = bySlug.get(slug);
-  if (!sku) return [];
-  const seen = new Set<string>();
-  return sku.concerns
-    .flatMap((concern) => getGuidesForConcern(concern))
-    .filter((guide) => (seen.has(guide.slug) ? false : (seen.add(guide.slug), true)));
-}
