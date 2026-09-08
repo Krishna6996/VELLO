@@ -106,9 +106,16 @@
 - WhatsApp: Order this on WhatsApp
 - Checkout h1: Checkout
 - Section heads: Your order / Your prescription / Delivery / Payment
-- Field labels: Pincode / Delivery address / Delivery slot / Note for the pharmacist
+- Field labels: Name / Phone / Delivery address / Pincode / Delivery slot / Note for the pharmacist
+- Field errors (one sentence, under the field): Add your name so the rider knows who to ask for. / Add a 10-digit phone number so the pharmacist can reach you. / Add the address, with a landmark if it helps. / Add a 6-digit pincode.
+- Cart line actions: Remove / Change
+- Empty cart link: Medicines
+- Upload list actions: Remove / Add another
+- Rx via WhatsApp confirmation: You'll send it on WhatsApp. The pharmacist will look for it before checking the order.
 - Rx why: Why we need this: these are Schedule H medicines. A registered pharmacist checks your prescription before we dispense.
 - Dropzone: Add a photo or PDF of your prescription
+- Dropzone hint: JPG, PNG or PDF, under 10 MB
+- Choice errors: Choose a delivery slot. / Choose how you'll pay.
 - Rx WhatsApp link: I'll send it on WhatsApp instead
 - Rx missing note: If it's missing, the pharmacist will message you before doing anything.
 - Pincode check: Check my pincode

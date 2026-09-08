@@ -1,10 +1,13 @@
 import { buttonClasses } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { QrCode } from "@/components/whatsapp/QrCode";
-import { buildRxLink, buildSearchMissLink } from "@/lib/whatsapp";
+import { buildNotServiceableLink, buildRxLink, buildSearchMissLink } from "@/lib/whatsapp";
 import { cx } from "@/lib/cx";
 
-export type WhatsAppContext = { kind: "landing" } | { kind: "search-miss"; query: string };
+export type WhatsAppContext =
+  | { kind: "landing" }
+  | { kind: "search-miss"; query: string }
+  | { kind: "not-serviceable"; pincode: string };
 
 interface WhatsAppOrderCardProps {
   context: WhatsAppContext;
@@ -35,6 +38,12 @@ function copyFor(context: WhatsAppContext): CardCopy {
         line: "Send your prescription on WhatsApp and a pharmacist will try to source it for you.",
         button: "Send on WhatsApp",
         href: buildSearchMissLink(context.query),
+      };
+    case "not-serviceable":
+      return {
+        line: `We don't deliver to ${context.pincode} yet. Send your prescription on WhatsApp and we'll tell you as soon as we do.`,
+        button: "Send on WhatsApp",
+        href: buildNotServiceableLink(context.pincode),
       };
   }
 }

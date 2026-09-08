@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CartEntry } from "@/components/cart/CartEntry";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { primaryNav, whatsappNav } from "@/components/layout/nav";
 import { Wordmark } from "@/components/layout/Wordmark";
@@ -36,6 +37,7 @@ export function Header() {
           >
             {whatsappNav.label}
           </Link>
+          <CartEntry />
           <MobileNav links={[...primaryNav, whatsappNav]} />
         </div>
       </div>
