@@ -181,6 +181,15 @@ export const typeTokens: readonly TypeToken[] = [
     sample: rupees(3650),
   },
   {
+    name: "Price hero",
+    utility: "text-price-hero",
+    desktop: "28px",
+    mobile: "24px",
+    weight: 800,
+    leading: "1.1",
+    sample: rupees(3650),
+  },
+  {
     name: "Button label",
     utility: "text-button",
     desktop: "16px",

@@ -109,6 +109,10 @@
   --text-price--line-height: 1.2;
   --text-price--font-weight: 700;
 
+  --text-price-hero: var(--fs-price-hero);
+  --text-price-hero--line-height: 1.1;
+  --text-price-hero--font-weight: 800;
+
   /* Editorial (design-system.md §4, desktop-extension.md): Fraunces headlines and subheads */
   --text-article-headline: var(--fs-article-headline);
   --text-article-headline--line-height: 1.2;
@@ -150,6 +154,7 @@
   --fs-meta: 12.5px;
   --fs-article-headline: 29px;
   --fs-article-subhead: 20px;
+  --fs-price-hero: 24px;
 }
 
 /* Desktop sizes (desktop-extension.md), 768px and above */
@@ -166,6 +171,7 @@
     --fs-meta: 13px;
     --fs-article-headline: 38px;
     --fs-article-subhead: 24px;
+    --fs-price-hero: 28px;
   }
 }
 
@@ -190,6 +196,16 @@
 
   ::placeholder {
     color: var(--color-ink-faint);
+    opacity: 1;
+  }
+}
+
+/* The one keyframe: text that changes fades in. Duration comes from lib/motion.ts. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
   }
 }

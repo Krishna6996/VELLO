@@ -74,6 +74,9 @@
 ## Product
 - Per pack: per {packLabel}
 - Add: Add to order
+- Added (button label after adding): Added to order
+- Quantity stepper (read by screen readers): Quantity / One fewer / One more
+- Breadcrumb root: Medicines
 - WhatsApp: Order on WhatsApp
 - Rx reassurance: This is a Schedule H medicine. A registered pharmacist checks your prescription before we dispense. You can upload it at checkout or send it on WhatsApp.
 - OTC reassurance: No prescription needed. A pharmacist still checks every order.
