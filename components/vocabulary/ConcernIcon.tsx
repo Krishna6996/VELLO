@@ -1,26 +1,9 @@
 import type { ReactNode } from "react";
 import { Glyph } from "@/components/vocabulary/Glyph";
+import type { ConcernSlug } from "@/lib/catalog/types";
 
-export type ConcernSlug =
-  | "diabetes"
-  | "blood-pressure"
-  | "thyroid"
-  | "skin-hair"
-  | "sexual-health"
-  | "mind-sleep"
-  | "periods"
-  | "everyday";
-
-export const concernSlugs: readonly ConcernSlug[] = [
-  "diabetes",
-  "blood-pressure",
-  "thyroid",
-  "skin-hair",
-  "sexual-health",
-  "mind-sleep",
-  "periods",
-  "everyday",
-];
+export type { ConcernSlug };
+export { concernSlugs } from "@/lib/catalog/concerns";
 
 /** 28 dots on a ring, one filled: a cycle. */
 function CycleRing() {

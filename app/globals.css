@@ -121,6 +121,11 @@
   --text-row: 14px;
   --text-row--line-height: 1.5;
   --text-row--font-weight: 400;
+
+  /* The molecule + strength + form + pack line on a medicine card (design-system.md §6) */
+  --text-meta: var(--fs-meta);
+  --text-meta--line-height: 1.5;
+  --text-meta--font-weight: 400;
 }
 
 /* Mobile sizes (design-system.md §4) */
@@ -133,6 +138,7 @@
   --fs-article: 15px;
   --fs-label: 12px;
   --fs-price: 15px;
+  --fs-meta: 12.5px;
 }
 
 /* Desktop sizes (desktop-extension.md), 768px and above */
@@ -146,6 +152,7 @@
     --fs-article: 17px;
     --fs-label: 13px;
     --fs-price: 16px;
+    --fs-meta: 13px;
   }
 }
 

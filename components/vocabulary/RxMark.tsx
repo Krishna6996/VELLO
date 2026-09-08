@@ -1,7 +1,8 @@
 import { Pill } from "@/components/ui/Pill";
+import type { RxSchedule } from "@/lib/catalog/types";
 import { cx } from "@/lib/cx";
 
-export type Schedule = "H" | "H1";
+export type Schedule = RxSchedule;
 
 /** Outlined square. Only ever rendered beside RxMark, never alone. */
 export function ScheduleTag({ schedule }: { schedule: Schedule }) {

@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Unrelated work kept on the prism-btp branch; only ignored artifacts remain on disk here
 /prism/
+
+# search demand signal, written in dev by lib/search-log.ts
+/.vello/

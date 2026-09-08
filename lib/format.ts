@@ -64,6 +64,44 @@ export function packLabel(units: number, form: PackForm): string {
   }
 }
 
+const formLabels: Record<PackForm, string> = {
+  tablet: "tablet",
+  "sr-tablet": "SR tablet",
+  capsule: "capsule",
+  syrup: "syrup",
+  drops: "drops",
+  cream: "cream",
+  gel: "gel",
+  inhaler: "inhaler",
+  vial: "vial",
+  sachet: "sachet",
+  strip: "test strips",
+  device: "device",
+};
+
+/** formLabel("sr-tablet") → "SR tablet", as it reads on the medicine line. */
+export function formLabel(form: PackForm): string {
+  return formLabels[form];
+}
+
+/**
+ * medicineLine("Metformin", "500mg", "sr-tablet", "strip of 20")
+ * → "Metformin 500mg · SR tablet · strip of 20"
+ * The honesty promise made visible: the molecule is always named.
+ */
+export function medicineLine(
+  molecule: string,
+  strength: string,
+  form: PackForm,
+  pack: string,
+): string {
+  const first = strength ? `${molecule} ${strength}` : molecule;
+  // Devices and test strips are already named by their line; repeating the form says nothing.
+  const parts =
+    form === "device" || form === "strip" ? [first, pack] : [first, formLabel(form), pack];
+  return parts.join(" \u00b7 ");
+}
+
 /**
  * doseCaption("1-0-1", "after food") → "1–0–1 · after food"
  * India's morning-afternoon-night notation, made legible with en dashes.

@@ -207,4 +207,13 @@ export const typeTokens: readonly TypeToken[] = [
     leading: "1.5",
     sample: "GST invoice sent after delivery. No hidden charges.",
   },
+  {
+    name: "Medicine line",
+    utility: "text-meta",
+    desktop: "13px",
+    mobile: "12.5px",
+    weight: 400,
+    leading: "1.5",
+    sample: "Metformin 500mg · SR tablet · strip of 20",
+  },
 ];

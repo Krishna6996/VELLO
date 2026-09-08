@@ -58,6 +58,11 @@
 - [Legal entity name] Private Limited. Registered office: DLF Prime Tower, Okhla, New Delhi.
 - Links: Privacy · Terms · Returns · Shipping · Grievance · Large type
 
+## Medicines listing
+- h1: Medicines
+- Concern filter, no filter: All
+- Out of stock (card): Not in stock right now
+
 ## Search
 - Results h1: Results for "{query}"
 - Group labels: Brands / Molecules / Concerns
