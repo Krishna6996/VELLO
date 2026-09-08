@@ -12,7 +12,7 @@ import { BlisterStrip } from "@/components/vocabulary/BlisterStrip";
 import { IconWell } from "@/components/vocabulary/Glyph";
 import { RiderGlyph } from "@/components/vocabulary/RiderGlyph";
 import { VerificationSeal } from "@/components/vocabulary/VerificationSeal";
-import { cartTotals } from "@/lib/cart";
+import { cartTotals } from "@/lib/cart-lines";
 import { formatDate, formatDateTime, rupees } from "@/lib/format";
 import {
   PHARMACIST,

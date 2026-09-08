@@ -63,6 +63,10 @@
   --font-serif: initial;
   --font-ui: var(--font-plus-jakarta), Inter, ui-sans-serif, system-ui, sans-serif;
   --font-editorial: var(--font-fraunces), Georgia, ui-serif, serif;
+  /* The ℞ glyph (U+211E) is not in Google's Fraunces build; it renders from the serif fallback either way, so it uses that stack directly and never triggers the 66KB download on a product page. */
+  --font-rx: Georgia, "Times New Roman", ui-serif, serif;
+  /* Engraved blister text: system UI at 6.5px, painted once, no web-font repaint. */
+  --font-engraved: ui-sans-serif, system-ui, sans-serif;
   --default-font-family: var(--font-ui);
 
   /* Type scale (desktop-extension.md). Sizes switch at 768px via the --fs-* variables below. */

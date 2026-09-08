@@ -1,4 +1,4 @@
-import { resolveLines, type ResolvedLine } from "@/lib/cart";
+import { resolveLines, type ResolvedLine } from "@/lib/cart-lines";
 import { parseDosePattern } from "@/components/vocabulary/DoseGlyphs";
 import type { Order, OrderStatus } from "@/lib/orders";
 

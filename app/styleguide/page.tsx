@@ -16,6 +16,7 @@ import { WhatsAppContexts } from "./WhatsAppContexts";
 
 export const metadata: Metadata = {
   title: "Styleguide",
+  robots: { index: false, follow: false },
 };
 
 const sectionLinks = [

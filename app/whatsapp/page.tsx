@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { buttonClasses } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Timeline } from "@/components/ui/Timeline";
 import { QrCode } from "@/components/whatsapp/QrCode";
 import { buildRxLink } from "@/lib/whatsapp";
 
-export const metadata: Metadata = {
-  title: "Order on WhatsApp · Vello",
+export const metadata: Metadata = pageMetadata({
+  title: "Order on WhatsApp",
   description:
     "Send a photo of your prescription or just the names. A pharmacist replies within 15 minutes, 8 am to 10 pm.",
-};
+  path: "/whatsapp",
+});
 
 const whatYouCanSend = [
   "A photo of your prescription",

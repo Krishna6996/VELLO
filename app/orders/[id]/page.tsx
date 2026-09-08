@@ -3,7 +3,7 @@ import { OrderView } from "@/components/orders/OrderView";
 
 export async function generateMetadata({ params }: PageProps<"/orders/[id]">): Promise<Metadata> {
   const { id } = await params;
-  return { title: `Order ${id} · Vello`, robots: { index: false, follow: false } };
+  return { title: `Order ${id}`, robots: { index: false, follow: false } };
 }
 
 export default async function OrderPage({ params }: PageProps<"/orders/[id]">) {

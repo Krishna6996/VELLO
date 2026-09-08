@@ -41,7 +41,7 @@ export function BlisterStrip({ brand, molecule, className }: BlisterStripProps) 
         x="120"
         y="66.5"
         textAnchor="middle"
-        className="fill-ink-faint font-ui"
+        className="fill-ink-muted font-engraved"
         fontSize="6.5"
         fontWeight="600"
         letterSpacing="1"

@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ConcernFilter } from "@/components/catalog/ConcernFilter";
 import { MedicineList } from "@/components/catalog/MedicineList";
 import { concernSlugs } from "@/lib/catalog/concerns";
 import { getAllSorted, getByConcern } from "@/lib/catalog/queries";
 import type { ConcernSlug } from "@/lib/catalog/types";
 
-export const metadata: Metadata = {
-  title: "Medicines · Vello",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Medicines",
+  description:
+    "Every medicine we stock, shown plainly: brand, molecule, strength, form, pack and printed MRP.",
+  path: "/medicines",
+});
 
 function isConcern(value: string | string[] | undefined): value is ConcernSlug {
   return typeof value === "string" && (concernSlugs as readonly string[]).includes(value);

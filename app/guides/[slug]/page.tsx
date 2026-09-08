@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { articleJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { mdxComponents } from "@/components/guides/mdx-components";
@@ -14,7 +17,12 @@ export async function generateMetadata({ params }: PageProps<"/guides/[slug]">):
   const { slug } = await params;
   const guide = await getGuideBySlug(slug);
   if (!guide) return {};
-  return { title: `${guide.title} · Vello`, description: guide.excerpt };
+  return pageMetadata({
+    title: guide.title,
+    description: guide.excerpt,
+    path: `/guides/${slug}`,
+    ogType: "article",
+  });
 }
 
 export default async function GuidePage({ params }: PageProps<"/guides/[slug]">) {
@@ -26,6 +34,13 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
 
   return (
     <article className="mx-auto w-full max-w-article px-6.5 py-10 md:px-0 md:py-16">
+      <JsonLd data={articleJsonLd(guide)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Guides", path: "/guides" },
+          { name: guide.title, path: `/guides/${guide.slug}` },
+        ])}
+      />
       <header className="flex flex-col gap-6">
         <div className="flex items-start justify-between gap-4">
           <h1 className="font-editorial text-article-headline text-ink">{guide.title}</h1>

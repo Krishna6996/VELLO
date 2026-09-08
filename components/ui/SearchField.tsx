@@ -17,7 +17,15 @@ import { ConcernIcon } from "@/components/vocabulary/ConcernIcon";
 import { IconWell } from "@/components/vocabulary/Glyph";
 import type { Concern, Sku } from "@/lib/catalog/types";
 import { cx } from "@/lib/cx";
-import { search, type MoleculeResult } from "@/lib/search";
+import { moleculeSlug } from "@/lib/catalog/molecule-slug";
+import type { MoleculeResult, SearchResults } from "@/lib/search";
+
+type SearchEngine = typeof import("@/lib/search");
+let enginePromise: Promise<SearchEngine> | null = null;
+function loadEngine(): Promise<SearchEngine> {
+  if (!enginePromise) enginePromise = import("@/lib/search");
+  return enginePromise;
+}
 
 interface SearchFieldProps {
   placeholder: string;
@@ -64,6 +72,12 @@ export function SearchField({
   const [typed, setTyped] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
+  const [engine, setEngine] = useState<SearchEngine | null>(null);
+
+  function ensureEngine() {
+    if (engine) return;
+    void loadEngine().then(setEngine);
+  }
 
   // Until something is typed, a /search page fills the field from its URL. It never clears itself.
   const locationSearch = useSyncExternalStore(subscribeToHistory, readLocationSearch, () => "");
@@ -72,9 +86,9 @@ export function SearchField({
   const query = typed ?? urlQuery;
   const setQuery = setTyped;
 
-  const results = useMemo(
-    () => (query.trim().length >= 2 ? search(query, LIMITS.brands) : null),
-    [query],
+  const results = useMemo<SearchResults | null>(
+    () => (engine && query.trim().length >= 2 ? engine.search(query, LIMITS.brands) : null),
+    [engine, query],
   );
 
   const options = useMemo<Option[]>(() => {
@@ -89,7 +103,7 @@ export function SearchField({
       ...results.molecules.slice(0, LIMITS.molecules).map<Option>((molecule) => ({
         kind: "molecule",
         key: `m-${molecule.molecule}`,
-        href: searchHref(molecule.molecule),
+        href: `/molecules/${moleculeSlug(molecule.molecule)}`,
         molecule,
       })),
       ...results.concerns.slice(0, LIMITS.concerns).map<Option>((concern) => ({
@@ -170,11 +184,13 @@ export function SearchField({
             aria-autocomplete="list"
             aria-activedescendant={active >= 0 && showPopover ? optionId(active) : undefined}
             onChange={(event) => {
+              ensureEngine();
               setQuery(event.target.value);
               setActive(-1);
               setOpen(event.target.value.trim().length >= 2);
             }}
             onFocus={() => {
+              ensureEngine();
               if (query.trim().length >= 2) setOpen(true);
             }}
             onKeyDown={handleKeyDown}

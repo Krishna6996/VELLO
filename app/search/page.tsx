@@ -4,13 +4,17 @@ import { redirect } from "next/navigation";
 import { MedicineList } from "@/components/catalog/MedicineList";
 import { Pill } from "@/components/ui/Pill";
 import { WhatsAppOrderCard } from "@/components/whatsapp/WhatsAppOrderCard";
+import { moleculeSlug } from "@/lib/catalog/molecules";
 import { search } from "@/lib/search";
 import { logUnmatched } from "@/lib/search-log";
 
 export async function generateMetadata({ searchParams }: PageProps<"/search">): Promise<Metadata> {
   const { q } = await searchParams;
   const query = typeof q === "string" ? q.trim() : "";
-  return { title: query ? `Results for "${query}" · Vello` : "Search · Vello" };
+  return {
+    title: query ? `Results for "${query}"` : "Search",
+    robots: { index: false, follow: true },
+  };
 }
 
 export default async function SearchPage({ searchParams }: PageProps<"/search">) {
@@ -35,7 +39,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
               {results.molecules.map((molecule) => (
                 <li key={molecule.molecule}>
                   <Link
-                    href={`/search?q=${encodeURIComponent(molecule.molecule)}`}
+                    href={`/molecules/${moleculeSlug(molecule.molecule)}`}
                     className="inline-flex min-h-11 items-center"
                   >
                     <Pill className="motion-surface min-h-9 hover:bg-primary hover:text-surface">

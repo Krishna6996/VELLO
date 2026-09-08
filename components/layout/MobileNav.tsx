@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { LargeTypeToggle } from "@/components/layout/LargeTypeToggle";
-import { Sheet } from "@/components/ui/Sheet";
 import type { NavLink } from "@/components/layout/nav";
 import { cx } from "@/lib/cx";
+
+/** Loaded on first open so the dialog code never ships with the header. */
+const Sheet = dynamic(() => import("@/components/ui/Sheet").then((m) => m.Sheet), { ssr: false });
 
 interface MobileNavProps {
   links: readonly NavLink[];
@@ -15,12 +18,16 @@ interface MobileNavProps {
 
 export function MobileNav({ links, alwaysVisible = false }: MobileNavProps) {
   const [open, setOpen] = useState(false);
+  const [everOpened, setEverOpened] = useState(false);
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setEverOpened(true);
+          setOpen(true);
+        }}
         aria-label="Menu"
         aria-haspopup="dialog"
         aria-expanded={open}
@@ -43,26 +50,28 @@ export function MobileNav({ links, alwaysVisible = false }: MobileNavProps) {
         </svg>
       </button>
 
-      <Sheet open={open} onOpenChange={setOpen} title="Vello">
-        <nav aria-label="Main">
-          <ul className="flex flex-col">
-            {links.map((link) => (
-              <li key={link.href} className="border-b border-divider last:border-b-0">
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex min-h-12 items-center text-body font-medium text-ink"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className="mt-2 border-t border-divider pt-2">
-          <LargeTypeToggle />
-        </div>
-      </Sheet>
+      {everOpened ? (
+        <Sheet open={open} onOpenChange={setOpen} title="Vello">
+          <nav aria-label="Main">
+            <ul className="flex flex-col">
+              {links.map((link) => (
+                <li key={link.href} className="border-b border-divider last:border-b-0">
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="flex min-h-12 items-center text-body font-medium text-ink"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="mt-2 border-t border-divider pt-2">
+            <LargeTypeToggle />
+          </div>
+        </Sheet>
+      ) : null}
     </>
   );
 }

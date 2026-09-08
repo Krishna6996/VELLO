@@ -9,6 +9,7 @@ export function ScheduleTag({ schedule }: { schedule: Schedule }) {
   return (
     <span
       data-pseudo-skip
+      role="img"
       className="inline-flex size-6 items-center justify-center rounded-none border border-primary text-legal font-semibold text-primary"
       aria-label={`Schedule ${schedule}`}
     >
@@ -27,8 +28,8 @@ interface RxMarkProps {
 export function RxMark({ schedule, className }: RxMarkProps) {
   return (
     <span data-pseudo-skip className={cx("inline-flex items-center gap-1.5", className)}>
-      <Pill aria-label="Prescription only" className="min-w-8 justify-center px-2">
-        <span aria-hidden="true" className="font-editorial text-input leading-none font-medium">
+      <Pill role="img" aria-label="Prescription only" className="min-w-8 justify-center px-2">
+        <span aria-hidden="true" className="font-rx text-input leading-none font-medium">
           ℞
         </span>
       </Pill>

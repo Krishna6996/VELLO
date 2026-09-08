@@ -15,6 +15,7 @@ export const whatsappNav: NavLink = { label: "WhatsApp", href: "/whatsapp" };
 
 /** Footer links from the copy deck's footer block. */
 export const footerLinks: readonly NavLink[] = [
+  { label: "About", href: "/about" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
   { label: "Returns", href: "/returns" },

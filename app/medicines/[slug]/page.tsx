@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, productJsonLd } from "@/lib/structured-data";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -27,10 +30,11 @@ export async function generateMetadata({
   const what = sku.strength
     ? `${sku.molecule.toLowerCase()} ${sku.strength}`
     : sku.molecule.toLowerCase();
-  return {
-    title: `${sku.brand} (${what}) · Vello`,
+  return pageMetadata({
+    title: `${sku.brand} (${what})`,
     description: sku.description,
-  };
+    path: `/medicines/${slug}`,
+  });
 }
 
 const blisterForms = new Set<Sku["form"]>(["tablet", "sr-tablet", "capsule"]);
@@ -113,6 +117,14 @@ export default async function MedicinePage({ params }: PageProps<"/medicines/[sl
 
   return (
     <div className="mx-auto w-full max-w-page px-6 py-10 md:px-10 md:py-16 lg:px-12">
+      <JsonLd data={productJsonLd(sku)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Medicines", path: "/medicines" },
+          { name: concern.title, path: `/concerns/${concern.slug}` },
+          { name: sku.brand, path: `/medicines/${sku.slug}` },
+        ])}
+      />
       <ProductView sku={sku} substitutes={substitutes} header={header} visual={visual}>
         <Section id="about" title="About">
           <p className="max-w-measure text-body text-ink-secondary">{sku.description}</p>

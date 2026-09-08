@@ -56,7 +56,7 @@
 - Pharmacist-in-charge: Anil Mehta, Registered Pharmacist, Reg no. PB-45821.
 - Grievance officer: [name], grievance@vello.in. We respond within 48 hours.
 - [Legal entity name] Private Limited. Registered office: DLF Prime Tower, Okhla, New Delhi.
-- Links: Privacy · Terms · Returns · Shipping · Grievance · Large type
+- Links: About · Privacy · Terms · Returns · Shipping · Grievance · Large type
 - Large type control: a switch labelled "Large type", pressed when on
 
 ## Medicines listing
@@ -187,7 +187,22 @@
 
 ## How it works page, about page, legal
 - How it works h1: How Vello works
+- How it works, pharmacist block head: The pharmacist
+- How it works, price block head: The price
+- How it works, licence block head: The licence
 - About h1: Who we are
 - About lines: Vello is run by a doctor and an engineer. We dispense from Sharma Medicos, a licensed pharmacy in Model Town, under pharmacist-in-charge Anil Mehta. We don't take discounts from manufacturers and we don't run offers. We deliver what was written.
+- Returns h1: Returns
 - Returns: Medicines can't be returned once dispensed, except if they arrive damaged or wrong. Tell us within 24 hours and we'll replace them.
+- Grievance h1: Grievance
 - Grievance: If something went wrong and we didn't fix it, write to our grievance officer. We respond within 48 hours.
+- Privacy h1: Privacy
+- Privacy lines: What we collect: your name, phone number, delivery address, and the prescription you send us. / Why: to check and deliver your order. The law asks a pharmacy to keep a record of every prescription medicine it dispenses, and we keep that record. / Who sees it: the registered pharmacist checking your order and the rider delivering it. Nobody else. / How long: prescriptions and dispensing records are kept for the period the Drugs and Cosmetics Rules require, and then deleted. / We don't sell health data, and we don't share it for advertising. / To see or delete what we hold about you, write to grievance@vello.in.
+- Terms h1: Terms
+- Terms lines: Vello takes your order and arranges delivery of medicines dispensed by Sharma Medicos, a licensed pharmacy in Ludhiana. / Prescription medicines are dispensed only against a valid prescription checked by a registered pharmacist. The pharmacist may decline an order; nothing is charged for an order that isn't dispensed. / Prices are printed MRPs. Delivery is ₹25. There are no other charges. / You can cancel an order until it is packed. After that, see Returns. / These terms are governed by the laws of India. Disputes are heard in Ludhiana.
+- Shipping h1: Shipping
+- Shipping lines: We deliver in Ludhiana, to pincodes starting 1410. / Two slots: today by 8 pm if you order before 4 pm, or tomorrow between 10 am and 1 pm. / Delivery is ₹25, whatever the order. / Plain packaging. No medicine names on the outside, no Vello branding on the box. / The rider calls when close.
+
+## Molecule pages
+- Intro, second paragraph: We stock {n} brands of {molecule}, in {k} strengths. Brands at the same strength and in the same form contain the same molecule; pharmacists consider them equivalent. Prices are printed MRPs, listed lowest first.
+- Group head: {molecule} {strength} · {form}

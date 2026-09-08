@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ConcernFilter } from "@/components/catalog/ConcernFilter";
 import { GuideCard } from "@/components/guides/GuideCard";
 import { concernSlugs } from "@/lib/catalog/concerns";
 import type { ConcernSlug } from "@/lib/catalog/types";
 import { getGuides, getGuidesForConcern } from "@/lib/guides";
 
-export const metadata: Metadata = {
-  title: "Guides · Vello",
+export const metadata: Metadata = pageMetadata({
+  title: "Guides",
   description: "Guides, written by doctors, reviewed by doctors.",
-};
+  path: "/guides",
+});
 
 function isConcern(value: string | string[] | undefined): value is ConcernSlug {
   return typeof value === "string" && (concernSlugs as readonly string[]).includes(value);

@@ -83,7 +83,7 @@ export function VerificationSeal({ name, reg, date, className }: VerificationSea
             Reg no. {reg} · {date}
           </textPath>
         </text>
-        <text {...centred} y="114" className="font-editorial" fontSize="66" fontWeight="500">
+        <text {...centred} y="114" className="font-rx" fontSize="66" fontWeight="500">
           ℞
         </text>
         <text

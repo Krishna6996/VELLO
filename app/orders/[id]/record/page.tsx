@@ -6,7 +6,7 @@ export async function generateMetadata({
 }: PageProps<"/orders/[id]/record">): Promise<Metadata> {
   const { id } = await params;
   return {
-    title: `Dispensing record, order ${id} · Vello`,
+    title: `Dispensing record, order ${id}`,
     robots: { index: false, follow: false },
   };
 }

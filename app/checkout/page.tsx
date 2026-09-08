@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 
-export const metadata: Metadata = {
-  title: "Checkout · Vello",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Checkout",
+  description: "Your order, your prescription, delivery and payment.",
+  path: "/checkout",
+  noIndex: true,
+});
 
 export default function CheckoutPage() {
   return (

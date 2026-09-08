@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { TotalsBlock } from "@/components/ui/TotalsBlock";
 import { VerificationSeal } from "@/components/vocabulary/VerificationSeal";
-import { cartTotals } from "@/lib/cart";
+import { cartTotals } from "@/lib/cart-lines";
 import { formatDate, formatDateTime, rupees } from "@/lib/format";
 import { PHARMACIST, orderLines, verifiedAt } from "@/lib/order-view";
 import { useOrders } from "@/lib/orders";

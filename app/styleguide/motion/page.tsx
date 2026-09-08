@@ -4,6 +4,7 @@ import { MotionDemos } from "./MotionDemos";
 
 export const metadata: Metadata = {
   title: "Motion · Styleguide",
+  robots: { index: false, follow: false },
 };
 
 export default function MotionPage() {

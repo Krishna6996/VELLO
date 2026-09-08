@@ -6,6 +6,7 @@ import { StateDemos } from "./StateDemos";
 
 export const metadata: Metadata = {
   title: "States · Styleguide",
+  robots: { index: false, follow: false },
 };
 
 export const dynamic = "force-dynamic";

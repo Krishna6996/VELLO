@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { MedicineList } from "@/components/catalog/MedicineList";
 import { GuideCard } from "@/components/guides/GuideCard";
@@ -29,7 +30,11 @@ export async function generateMetadata({
   const { slug } = await params;
   if (!isConcern(slug)) return {};
   const concern = concernBySlug[slug];
-  return { title: `${concern.title} · Vello`, description: concern.intro };
+  return pageMetadata({
+    title: concern.title,
+    description: concern.intro,
+    path: `/concerns/${slug}`,
+  });
 }
 
 export default async function ConcernPage({ params }: PageProps<"/concerns/[slug]">) {

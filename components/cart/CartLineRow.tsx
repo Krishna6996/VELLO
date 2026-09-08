@@ -4,7 +4,7 @@ import { MedicineLine } from "@/components/catalog/MedicineCard";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { FormIcon } from "@/components/vocabulary/FormIcon";
 import { IconWell } from "@/components/vocabulary/Glyph";
-import type { ResolvedLine } from "@/lib/cart";
+import type { ResolvedLine } from "@/lib/cart-lines";
 import { rupees } from "@/lib/format";
 
 interface CartLineRowProps {

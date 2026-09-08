@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { ConcernTile } from "@/components/catalog/ConcernTile";
 import { concerns } from "@/lib/catalog/concerns";
 
-export const metadata: Metadata = {
-  title: "Concerns · Vello",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Concerns",
+  description:
+    "What we're here for: diabetes, blood pressure and heart, thyroid, skin and hair, sexual health, mind and sleep, periods and women's health, everyday health.",
+  path: "/concerns",
+});
 
 export default function ConcernsPage() {
   return (

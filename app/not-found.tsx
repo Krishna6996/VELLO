@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { NotFoundContent } from "@/components/layout/NotFoundContent";
 
 export const metadata: Metadata = {
-  title: "We don't have a page here · Vello",
+  title: "We don't have a page here",
 };
 
 export default function NotFound() {
