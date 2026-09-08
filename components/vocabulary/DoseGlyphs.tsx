@@ -32,9 +32,17 @@ export function DoseGlyphs({ pattern, note, className }: DoseGlyphsProps) {
           <span
             key={slots[index]}
             className={cx(
-              "block size-[11px] rounded-pill",
+              "block size-[11px] origin-center rounded-pill",
               filled ? slots[index] : "border-[1.5px] border-dose-empty",
             )}
+            style={
+              filled
+                ? {
+                    animation: "dose-fill var(--motion-fast) var(--motion-ease) both",
+                    animationDelay: `calc(${index} * var(--motion-stagger))`,
+                  }
+                : undefined
+            }
           />
         ))}
       </span>

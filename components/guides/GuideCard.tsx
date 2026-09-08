@@ -26,7 +26,7 @@ export function GuideCard({
     <Link
       href={href}
       className={cx(
-        "flex flex-col gap-3 rounded-card border border-hairline bg-surface p-4 text-ink hover:border-primary md:p-5",
+        "motion-border flex flex-col gap-3 rounded-card border border-hairline bg-surface p-4 text-ink hover:border-primary md:p-5",
         className,
       )}
     >

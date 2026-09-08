@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Primitives } from "./Primitives";
 import { Section } from "./Section";
@@ -39,6 +40,8 @@ const sectionLinks = [
   { id: "texture", label: "Texture" },
   { id: "whatsapp", label: "WhatsApp" },
 ] as const;
+
+const subpages = [{ href: "/styleguide/motion", label: "Motion" }] as const;
 
 function swatchStyle(name: string): CSSProperties {
   return { backgroundColor: `var(--color-${name})` };
@@ -93,6 +96,16 @@ export default function StyleguidePage() {
                 >
                   {link.label}
                 </a>
+              </li>
+            ))}
+            {subpages.map((page) => (
+              <li key={page.href}>
+                <Link
+                  href={page.href}
+                  className="inline-flex min-h-9 items-center text-row font-medium text-primary hover:text-primary-pressed"
+                >
+                  {page.label}
+                </Link>
               </li>
             ))}
           </ul>

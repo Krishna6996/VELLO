@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { motionCssVars } from "@/lib/motion";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -26,7 +27,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${fraunces.variable} h-full`}>
+    <html
+      lang="en"
+      className={`${plusJakarta.variable} ${fraunces.variable} h-full`}
+      style={motionCssVars}
+    >
       <body className="flex min-h-full flex-col bg-canvas text-ink">
         <Header />
         <main className="flex-1">{children}</main>

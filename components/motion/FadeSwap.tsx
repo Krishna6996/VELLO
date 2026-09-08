@@ -1,7 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { calmEaseCss, useCalmMotion } from "@/lib/motion";
+import { calmEaseCss } from "@/lib/motion";
+import { useCalmMotion } from "@/lib/use-calm-motion";
 
 interface FadeSwapProps {
   /** When this changes, the content fades in once. */

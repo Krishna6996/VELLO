@@ -53,8 +53,8 @@ export function MedicineCard({
       className={cx(
         "flex items-start gap-3 text-ink",
         compact
-          ? cx("rounded-well px-3 py-2.5 hover:bg-sage", active && "bg-sage")
-          : "rounded-card border border-hairline bg-surface p-4 hover:border-primary md:gap-4 md:p-5",
+          ? cx("motion-bg rounded-well px-3 py-2.5 hover:bg-sage", active && "bg-sage")
+          : "motion-border rounded-card border border-hairline bg-surface p-4 hover:border-primary md:gap-4 md:p-5",
         className,
       )}
     >

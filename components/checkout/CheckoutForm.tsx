@@ -77,7 +77,11 @@ export function CheckoutForm() {
 
   if (!hydrated) {
     return (
-      <div aria-hidden="true" className="h-40 rounded-card border border-hairline bg-surface" />
+      <div aria-hidden="true" className="flex flex-col gap-3">
+        <div className="h-4 w-2/3 rounded-none bg-hairline" />
+        <div className="h-4 w-1/2 rounded-none bg-hairline" />
+        <div className="h-4 w-3/5 rounded-none bg-hairline" />
+      </div>
     );
   }
 

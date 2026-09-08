@@ -16,7 +16,7 @@ export function Card({ selected = false, hero = false, className, children, ...r
   return (
     <div
       className={cx(
-        "border bg-surface",
+        "motion-border border bg-surface",
         hero ? "rounded-hero p-6 md:p-8" : "rounded-card p-4 md:p-5",
         selected ? cx("border-primary", selectedEdge) : "border-hairline",
         className,

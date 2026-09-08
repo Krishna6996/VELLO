@@ -18,7 +18,7 @@ export function ConcernTile({ concern, className }: ConcernTileProps) {
     <Link
       href={`/concerns/${concern.slug}`}
       className={cx(
-        "flex flex-col gap-4 rounded-card border-[1.5px] border-hairline bg-surface p-4 text-ink hover:border-primary md:p-5",
+        "motion-border flex flex-col gap-4 rounded-card border-[1.5px] border-hairline bg-surface p-4 text-ink hover:border-primary md:p-5",
         className,
       )}
     >

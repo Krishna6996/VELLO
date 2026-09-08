@@ -32,7 +32,7 @@ export function RadioRow({ value, label, description, trailing, disabled }: Radi
       value={value}
       disabled={disabled}
       className={cx(
-        "group flex w-full items-center gap-3 rounded-card border border-hairline bg-surface p-4 text-left text-ink md:p-5",
+        "group motion-border flex w-full items-center gap-3 rounded-card border border-hairline bg-surface p-4 text-left text-ink md:p-5",
         "data-[state=checked]:border-primary",
         selectedEdge,
         "after:hidden data-[state=checked]:after:block",

@@ -196,7 +196,7 @@ export function SearchField({
           onInteractOutside={(event) => {
             if (formRef.current?.contains(event.target as Node)) event.preventDefault();
           }}
-          className="z-30 w-[var(--radix-popover-trigger-width)] min-w-80 rounded-card border border-hairline bg-surface p-2 md:w-[max(var(--radix-popover-trigger-width),400px)]"
+          className="z-30 w-[var(--radix-popover-trigger-width)] min-w-80 rounded-card border border-hairline bg-surface p-2 data-[state=open]:animate-[popover-in_var(--motion-fast)_var(--motion-ease)_both] md:w-[max(var(--radix-popover-trigger-width),400px)]"
         >
           {results ? (
             <div

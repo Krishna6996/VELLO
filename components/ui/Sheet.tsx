@@ -22,11 +22,11 @@ export function Sheet({ open, onOpenChange, title, description, children, classN
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-20 bg-ink/20" />
+        <Dialog.Overlay className="fixed inset-0 z-20 bg-ink/20 data-[state=open]:animate-[overlay-in_var(--motion-base)_var(--motion-ease)_both]" />
         <Dialog.Content
           {...(description ? {} : { "aria-describedby": undefined })}
           className={cx(
-            "fixed inset-x-0 bottom-0 z-30 flex max-h-[85vh] flex-col border-t border-hairline bg-surface text-ink rounded-t-hero",
+            "fixed inset-x-0 bottom-0 z-30 flex max-h-[85vh] flex-col rounded-t-hero border-t border-hairline bg-surface text-ink data-[state=open]:animate-[sheet-in_var(--motion-base)_var(--motion-ease)_both]",
             "md:inset-y-0 md:right-0 md:left-auto md:max-h-none md:w-90 md:rounded-l-hero md:rounded-tr-none md:border-t-0 md:border-l",
             className,
           )}

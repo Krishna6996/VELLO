@@ -175,6 +175,25 @@
   }
 }
 
+/* Transitions on the system's tokens. These are the only transitions components use. */
+@utility motion-bg {
+  transition-property: background-color;
+  transition-duration: var(--motion-hover);
+  transition-timing-function: var(--motion-ease);
+}
+
+@utility motion-border {
+  transition-property: border-color;
+  transition-duration: var(--motion-hover);
+  transition-timing-function: var(--motion-ease);
+}
+
+@utility motion-surface {
+  transition-property: background-color, border-color;
+  transition-duration: var(--motion-hover);
+  transition-timing-function: var(--motion-ease);
+}
+
 @layer base {
   html {
     background-color: var(--color-canvas);
@@ -200,12 +219,72 @@
   }
 }
 
-/* The one keyframe: text that changes fades in. Duration comes from lib/motion.ts. */
+/*
+  Motion. Durations and easing are written onto <html> by app/layout.tsx from
+  lib/motion.ts (--motion-hover, --motion-fast, --motion-base, --motion-slow,
+  --motion-ease). Under reduced motion every duration is zero, so everything
+  renders in its final state.
+*/
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-hover: 0ms !important;
+    --motion-fast: 0ms !important;
+    --motion-base: 0ms !important;
+    --motion-slow: 0ms !important;
+    --motion-stagger: 0ms !important;
+  }
+}
+
+/* Text that changes fades in (FadeSwap). */
 @keyframes fade-in {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+/* Sheet: opacity and an 8px translate. */
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Popover: opacity and a 4px translate. */
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Overlay behind a sheet. */
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dose dots fill once, on first render. */
+@keyframes dose-fill {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }
