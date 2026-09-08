@@ -11,6 +11,7 @@ import {
   type TypeToken,
 } from "./tokens";
 import { Vocabulary } from "./Vocabulary";
+import { WhatsAppContexts } from "./WhatsAppContexts";
 
 export const metadata: Metadata = {
   title: "Styleguide",
@@ -36,6 +37,7 @@ const sectionLinks = [
   { id: "seal", label: "Seal" },
   { id: "blister", label: "Blister and rider" },
   { id: "texture", label: "Texture" },
+  { id: "whatsapp", label: "WhatsApp" },
 ] as const;
 
 function swatchStyle(name: string): CSSProperties {
@@ -216,6 +218,7 @@ export default function StyleguidePage() {
 
       <Primitives />
       <Vocabulary />
+      <WhatsAppContexts />
     </div>
   );
 }

@@ -1,13 +1,22 @@
 import { buttonClasses } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { QrCode } from "@/components/whatsapp/QrCode";
-import { buildNotServiceableLink, buildRxLink, buildSearchMissLink } from "@/lib/whatsapp";
+import type { Sku } from "@/lib/catalog/types";
 import { cx } from "@/lib/cx";
+import {
+  buildNotServiceableLink,
+  buildOrderLink,
+  buildRxLink,
+  buildSearchMissLink,
+  type OrderLine,
+} from "@/lib/whatsapp";
 
 export type WhatsAppContext =
   | { kind: "landing" }
   | { kind: "search-miss"; query: string }
-  | { kind: "not-serviceable"; pincode: string };
+  | { kind: "out-of-stock"; sku: Sku; qty?: number }
+  | { kind: "not-serviceable"; pincode: string }
+  | { kind: "cart"; lines: readonly OrderLine[]; pincode?: string };
 
 interface WhatsAppOrderCardProps {
   context: WhatsAppContext;
@@ -23,12 +32,15 @@ interface CardCopy {
   href: string;
 }
 
+const replyLine =
+  "Send a photo of your prescription or just the names. A pharmacist replies within 15 minutes, 8 am to 10 pm.";
+
 function copyFor(context: WhatsAppContext): CardCopy {
   switch (context.kind) {
     case "landing":
       return {
         heading: "Prefer WhatsApp?",
-        line: "Send a photo of your prescription or just the names. A pharmacist replies within 15 minutes, 8 am to 10 pm.",
+        line: replyLine,
         button: "Send prescription on WhatsApp",
         href: buildRxLink(),
       };
@@ -39,11 +51,26 @@ function copyFor(context: WhatsAppContext): CardCopy {
         button: "Send on WhatsApp",
         href: buildSearchMissLink(context.query),
       };
+    case "out-of-stock":
+      return {
+        line: "Not in stock right now. Send it on WhatsApp and we'll tell you when it's back, or pick an equivalent below.",
+        button: "Order on WhatsApp",
+        href: buildOrderLink([
+          { brand: context.sku.brand, strength: context.sku.strength, qty: context.qty ?? 1 },
+        ]),
+      };
     case "not-serviceable":
       return {
         line: `We don't deliver to ${context.pincode} yet. Send your prescription on WhatsApp and we'll tell you as soon as we do.`,
         button: "Send on WhatsApp",
         href: buildNotServiceableLink(context.pincode),
+      };
+    case "cart":
+      return {
+        heading: "Prefer WhatsApp?",
+        line: replyLine,
+        button: "Order this on WhatsApp",
+        href: buildOrderLink(context.lines, context.pincode),
       };
   }
 }
