@@ -59,11 +59,25 @@ export function getAllSorted(): Sku[] {
 export interface RelatedGuide {
   slug: string;
   title: string;
+  excerpt: string;
+  byline: string;
+  readingMinutes: number;
+  concerns: readonly ConcernSlug[];
 }
 
-/** Filled when guides exist (prompt 10). Keyed by SKU slug. */
-const relatedGuides = new Map<string, RelatedGuide[]>();
+/** Filled when guides exist (prompt 10). Until then there are none to relate. */
+const guideRegistry: RelatedGuide[] = [];
 
+export function getGuidesForConcern(concern: ConcernSlug): RelatedGuide[] {
+  return guideRegistry.filter((guide) => guide.concerns.includes(concern));
+}
+
+/** Guides matching any of the SKU's concerns. */
 export function getRelatedGuides(slug: string): RelatedGuide[] {
-  return relatedGuides.get(slug) ?? [];
+  const sku = bySlug.get(slug);
+  if (!sku) return [];
+  const seen = new Set<string>();
+  return sku.concerns
+    .flatMap((concern) => getGuidesForConcern(concern))
+    .filter((guide) => (seen.has(guide.slug) ? false : (seen.add(guide.slug), true)));
 }
