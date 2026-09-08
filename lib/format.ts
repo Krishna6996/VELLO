@@ -114,3 +114,25 @@ export function doseCaption(pattern: string, note?: string): string {
   const trimmedNote = note?.trim();
   return trimmedNote ? `${dashed} \u00b7 ${trimmedNote}` : dashed;
 }
+
+const dateFormatter = new Intl.DateTimeFormat("en-IN", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
+const timeFormatter = new Intl.DateTimeFormat("en-IN", {
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: true,
+});
+
+/** formatDate("2026-09-08T13:12:00Z") → "8 Sept 2026" */
+export function formatDate(iso: string): string {
+  return dateFormatter.format(new Date(iso)).replace("Sept", "Sep");
+}
+
+/** formatDateTime(iso) → "8 Sep 2026, 6:42 pm" */
+export function formatDateTime(iso: string): string {
+  const date = new Date(iso);
+  return `${formatDate(iso)}, ${timeFormatter.format(date).toLowerCase()}`;
+}

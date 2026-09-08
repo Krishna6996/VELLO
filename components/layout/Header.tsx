@@ -7,7 +7,7 @@ import { SearchField } from "@/components/ui/SearchField";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 border-b border-hairline bg-canvas">
+    <header className="sticky top-0 z-10 border-b border-hairline bg-canvas print:hidden">
       <div className="mx-auto flex h-16 w-full max-w-page items-center gap-3 px-6 md:gap-6 md:px-10 lg:px-12">
         <Wordmark />
 

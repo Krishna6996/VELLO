@@ -14,7 +14,7 @@ const linkClass =
 
 export function Footer() {
   return (
-    <footer className="border-t border-hairline bg-canvas">
+    <footer className="border-t border-hairline bg-canvas print:hidden">
       <div className="mx-auto grid w-full max-w-page gap-10 px-6 py-12 md:grid-cols-3 md:gap-6 md:px-10 md:py-16 lg:px-12">
         <div className="flex flex-col gap-2">
           <Wordmark />

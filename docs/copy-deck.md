@@ -135,7 +135,16 @@
 - Verification sentence: Checked by {name}, Registered Pharmacist, Reg no. {reg}, on {date}.
 - Rider line: {rider} is bringing it. Plain packaging.
 - Aftercare card: Leaflet for each medicine / Set dose reminders / Refill in {n} days
+- Aftercare head: After delivery
+- Aftercare leaflet row: Leaflet for {brand}
+- Rider first name (draft data): Gurpreet
 - Record link: Download dispensing record
+- Record page h1: Dispensing record
+- Record page print button: Print or save as PDF
+- Order not found: We can't find this order on this device. If you placed it from another phone, open the link we sent there.
+- Order details head: Order details
+- Order details rows: Delivery to / Slot / Payment / Prescription
+- Prescription values: Uploaded ({n} files) / Sent on WhatsApp / Not yet received
 
 ## Buttons and placeholders
 - Loading label (replaces the button label, no spinner): Working

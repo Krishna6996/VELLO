@@ -5,6 +5,8 @@ export interface TimelineStep {
   label: string;
   /** One line under the label, for example a time or a pharmacist's name. */
   sub?: string;
+  /** A timestamp at 12px faint, for done steps. */
+  time?: string;
   /** Content shown under the labels, for example the seal beside the verified step. */
   aside?: ReactNode;
 }
@@ -67,6 +69,7 @@ function Labels({ step, state }: { step: TimelineStep; state: NodeState }) {
           {step.sub}
         </span>
       ) : null}
+      {step.time ? <span className="text-legal text-ink-faint">{step.time}</span> : null}
       {step.aside ? <span className="mt-3 block">{step.aside}</span> : null}
     </span>
   );
