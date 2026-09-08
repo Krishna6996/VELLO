@@ -1,9 +1,12 @@
+import type { ReactNode } from "react";
 import { cx } from "@/lib/cx";
 
 export interface TimelineStep {
   label: string;
   /** One line under the label, for example a time or a pharmacist's name. */
   sub?: string;
+  /** Content shown under the labels, for example the seal beside the verified step. */
+  aside?: ReactNode;
 }
 
 interface TimelineProps {
@@ -64,6 +67,7 @@ function Labels({ step, state }: { step: TimelineStep; state: NodeState }) {
           {step.sub}
         </span>
       ) : null}
+      {step.aside ? <span className="mt-3 block">{step.aside}</span> : null}
     </span>
   );
 }

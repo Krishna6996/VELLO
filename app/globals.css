@@ -109,6 +109,15 @@
   --text-price--line-height: 1.2;
   --text-price--font-weight: 700;
 
+  /* Editorial (design-system.md §4, desktop-extension.md): Fraunces headlines and subheads */
+  --text-article-headline: var(--fs-article-headline);
+  --text-article-headline--line-height: 1.2;
+  --text-article-headline--font-weight: 500;
+
+  --text-article-subhead: var(--fs-article-subhead);
+  --text-article-subhead--line-height: 1.25;
+  --text-article-subhead--font-weight: 500;
+
   /* Fixed sizes used by primitives (design-system.md §5, §10) */
   --text-button: 16px;
   --text-button--line-height: 1;
@@ -139,6 +148,8 @@
   --fs-label: 12px;
   --fs-price: 15px;
   --fs-meta: 12.5px;
+  --fs-article-headline: 29px;
+  --fs-article-subhead: 20px;
 }
 
 /* Desktop sizes (desktop-extension.md), 768px and above */
@@ -153,6 +164,8 @@
     --fs-label: 13px;
     --fs-price: 16px;
     --fs-meta: 13px;
+    --fs-article-headline: 38px;
+    --fs-article-subhead: 24px;
   }
 }
 

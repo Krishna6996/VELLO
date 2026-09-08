@@ -1,0 +1,59 @@
+import { buttonClasses } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { QrCode } from "@/components/whatsapp/QrCode";
+import { buildRxLink } from "@/lib/whatsapp";
+import { cx } from "@/lib/cx";
+
+export type WhatsAppContext = { kind: "landing" };
+
+interface WhatsAppOrderCardProps {
+  context: WhatsAppContext;
+  className?: string;
+}
+
+interface CardCopy {
+  heading?: string;
+  line: string;
+  button: string;
+  href: string;
+}
+
+function copyFor(context: WhatsAppContext): CardCopy {
+  switch (context.kind) {
+    case "landing":
+      return {
+        heading: "Prefer WhatsApp?",
+        line: "Send a photo of your prescription or just the names. A pharmacist replies within 15 minutes, 8 am to 10 pm.",
+        button: "Send prescription on WhatsApp",
+        href: buildRxLink(),
+      };
+  }
+}
+
+/**
+ * The second front door. One Card, not a bubble: heading, one line, a primary
+ * button, and on desktop a QR to scan. Copy varies by context.
+ */
+export function WhatsAppOrderCard({ context, className }: WhatsAppOrderCardProps) {
+  const copy = copyFor(context);
+  return (
+    <Card
+      hero
+      className={cx("flex flex-col gap-6 md:flex-row md:items-center md:gap-10", className)}
+    >
+      <div className="flex flex-1 flex-col gap-4">
+        {copy.heading ? <h2 className="text-section text-ink">{copy.heading}</h2> : null}
+        <p className="max-w-measure text-body text-ink-secondary">{copy.line}</p>
+        <div>
+          <a href={copy.href} target="_blank" rel="noopener" className={buttonClasses("primary")}>
+            {copy.button}
+          </a>
+        </div>
+      </div>
+      <figure className="hidden shrink-0 flex-col items-center gap-2 md:flex">
+        <QrCode value={copy.href} size={120} label="QR code that opens WhatsApp" />
+        <figcaption className="text-legal text-ink-muted">Scan to open WhatsApp</figcaption>
+      </figure>
+    </Card>
+  );
+}

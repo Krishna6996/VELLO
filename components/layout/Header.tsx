@@ -26,7 +26,10 @@ export function Header() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end gap-2 md:flex-none md:gap-4">
-          <SearchField placeholder="Search a medicine or molecule" className="w-full md:w-72" />
+          <SearchField
+            placeholder="Search a medicine or molecule"
+            className="w-full md:w-72 [[data-hero-search=visible]_&]:invisible"
+          />
           <Link
             href={whatsappNav.href}
             className="hidden min-h-11 shrink-0 items-center text-body font-medium text-primary hover:text-primary-pressed md:inline-flex"
