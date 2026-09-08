@@ -8,6 +8,14 @@ import { RxMark } from "@/components/vocabulary/RxMark";
 
 interface MedicineCardProps {
   sku: Sku;
+  /** A flat row for lists inside a popover: no border, sage on hover or when active. */
+  compact?: boolean;
+  /** Keyboard highlight in a listbox. */
+  active?: boolean;
+  id?: string;
+  role?: string;
+  tabIndex?: number;
+  onMouseEnter?: () => void;
   className?: string;
 }
 
@@ -24,12 +32,29 @@ export function MedicineLine({ sku, className }: { sku: Sku; className?: string 
  * The product's core object (design-system.md §6). Medicine shown typographically:
  * form icon in a sage well, brand, molecule line, ℞ and schedule, plain price.
  */
-export function MedicineCard({ sku, className }: MedicineCardProps) {
+export function MedicineCard({
+  sku,
+  compact = false,
+  active = false,
+  id,
+  role,
+  tabIndex,
+  onMouseEnter,
+  className,
+}: MedicineCardProps) {
   return (
     <Link
       href={`/medicines/${sku.slug}`}
+      id={id}
+      role={role}
+      tabIndex={tabIndex}
+      aria-selected={role === "option" ? active : undefined}
+      onMouseEnter={onMouseEnter}
       className={cx(
-        "flex items-start gap-3 rounded-card border border-hairline bg-surface p-4 text-ink hover:border-primary md:gap-4 md:p-5",
+        "flex items-start gap-3 text-ink",
+        compact
+          ? cx("rounded-well px-3 py-2.5 hover:bg-sage", active && "bg-sage")
+          : "rounded-card border border-hairline bg-surface p-4 hover:border-primary md:gap-4 md:p-5",
         className,
       )}
     >
@@ -39,7 +64,9 @@ export function MedicineCard({ sku, className }: MedicineCardProps) {
       <span className="flex min-w-0 flex-1 flex-col gap-1">
         <span className="text-card text-ink">{sku.brand}</span>
         <MedicineLine sku={sku} />
-        {sku.schedule !== "OTC" ? <RxMark schedule={sku.schedule} className="mt-1" /> : null}
+        {!compact && sku.schedule !== "OTC" ? (
+          <RxMark schedule={sku.schedule} className="mt-1" />
+        ) : null}
       </span>
       <span className="shrink-0 pt-0.5 text-right">
         {sku.inStock ? (
