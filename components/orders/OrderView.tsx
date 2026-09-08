@@ -143,10 +143,10 @@ export function OrderView({ id }: { id: string }) {
             <span className="text-card text-ink">After delivery</span>
             <ul className="flex flex-col divide-y divide-divider">
               {lines.map((line) => (
-                <li key={line.slug} className="flex min-h-11 items-center">
+                <li key={line.slug} className="flex items-center">
                   <Link
                     href={`/medicines/${line.sku.slug}`}
-                    className="text-body font-medium text-primary hover:text-primary-pressed"
+                    className="inline-flex min-h-11 items-center text-body font-medium text-primary hover:text-primary-pressed"
                   >
                     Leaflet for {line.sku.brand}
                   </Link>

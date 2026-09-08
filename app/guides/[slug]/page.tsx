@@ -46,7 +46,6 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
           <h1 className="font-editorial text-article-headline text-ink">{guide.title}</h1>
           <ShareLink title={guide.title} />
         </div>
-        <p className="text-article text-ink-secondary">{guide.excerpt}</p>
         <p className="border-y border-hairline py-3 text-row text-ink-muted">
           Written by {guide.author}, {guide.authorReg}. Reviewed by {guide.reviewer},{" "}
           {guide.reviewerReg}. Published {formatDate(guide.published)}. Updated{" "}

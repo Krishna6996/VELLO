@@ -64,7 +64,6 @@ export function CheckoutForm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [note, setNote] = useState("");
   const [pincode, setPincode] = useState("");
   const [pincodeStatus, setPincodeStatus] = useState<PincodeStatus>("unchecked");
   const [slot, setSlot] = useState<DeliverySlot | "">("");
@@ -143,7 +142,6 @@ export function CheckoutForm() {
       },
       slot,
       payment,
-      note: note.trim() || undefined,
       prescription: !totals.needsRx
         ? { via: "none" }
         : rxViaWhatsApp
@@ -261,12 +259,6 @@ export function CheckoutForm() {
           status={pincodeStatus}
           onStatus={setPincodeStatus}
           error={errors.pincode}
-        />
-        <Textarea
-          label="Note for the pharmacist"
-          rows={2}
-          value={note}
-          onChange={(event) => setNote(event.target.value)}
         />
         <div className="flex flex-col gap-2">
           <p id="slot-label" className="text-label text-ink-muted">

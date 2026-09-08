@@ -107,7 +107,7 @@
 - WhatsApp: Order this on WhatsApp
 - Checkout h1: Checkout
 - Section heads: Your order / Your prescription / Delivery / Payment
-- Field labels: Name / Phone / Delivery address / Pincode / Delivery slot / Note for the pharmacist
+- Field labels: Name / Phone / Delivery address / Pincode / Delivery slot
 - Field errors (one sentence, under the field): Add your name so the rider knows who to ask for. / Add a 10-digit phone number so the pharmacist can reach you. / Add the address, with a landmark if it helps. / Add a 6-digit pincode.
 - Cart line actions: Remove / Change
 - Empty cart link: Medicines

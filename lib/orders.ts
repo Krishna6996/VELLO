@@ -47,7 +47,6 @@ export interface Order {
   slot: DeliverySlot;
   payment: PaymentMethod;
   prescription: Prescription;
-  note?: string;
   status: OrderStatus;
   /** Set when a pharmacist has checked the order. */
   verifiedBy?: { name: string; reg: string; date: string };
@@ -64,7 +63,6 @@ export interface NewOrder {
   slot: DeliverySlot;
   payment: PaymentMethod;
   prescription: Prescription;
-  note?: string;
 }
 
 interface OrdersState {
