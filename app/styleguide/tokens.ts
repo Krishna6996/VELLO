@@ -44,6 +44,15 @@ export const colourTokens: readonly ColourToken[] = [
     hex: "#B0761F",
     role: "Time text such as “Runs out in 6 days”. Passes contrast on cream.",
   },
+  { name: "dose-morning", hex: "#EEC27E", role: "Dose glyph, morning. Only inside DoseGlyphs." },
+  {
+    name: "dose-afternoon",
+    hex: "#8FA69E",
+    role: "Dose glyph, afternoon. Only inside DoseGlyphs.",
+  },
+  { name: "dose-night", hex: "#3A5A50", role: "Dose glyph, night. Only inside DoseGlyphs." },
+  { name: "dose-empty", hex: "#C2BCB0", role: "Empty dose ring, 1.5px." },
+  { name: "ring", hex: "#E0DBD1", role: "Timeline future ring and connector." },
 ];
 
 export interface RadiusToken {
@@ -170,5 +179,32 @@ export const typeTokens: readonly TypeToken[] = [
     weight: 700,
     leading: "1.2",
     sample: rupees(3650),
+  },
+  {
+    name: "Button label",
+    utility: "text-button",
+    desktop: "16px",
+    mobile: "16px",
+    weight: 600,
+    leading: "1",
+    sample: "Add to order",
+  },
+  {
+    name: "Input text",
+    utility: "text-input",
+    desktop: "15px",
+    mobile: "15px",
+    weight: 400,
+    leading: "1.4",
+    sample: "Search a medicine or molecule",
+  },
+  {
+    name: "Row",
+    utility: "text-row",
+    desktop: "14px",
+    mobile: "14px",
+    weight: 400,
+    leading: "1.5",
+    sample: "GST invoice sent after delivery. No hidden charges.",
   },
 ];

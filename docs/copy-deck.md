@@ -98,6 +98,7 @@
 - WhatsApp: Order this on WhatsApp
 - Checkout h1: Checkout
 - Section heads: Your order / Your prescription / Delivery / Payment
+- Field labels: Pincode / Delivery address / Delivery slot / Note for the pharmacist
 - Rx why: Why we need this: these are Schedule H medicines. A registered pharmacist checks your prescription before we dispense.
 - Dropzone: Add a photo or PDF of your prescription
 - Rx WhatsApp link: I'll send it on WhatsApp instead
@@ -120,6 +121,10 @@
 - Rider line: {rider} is bringing it. Plain packaging.
 - Aftercare card: Leaflet for each medicine / Set dose reminders / Refill in {n} days
 - Record link: Download dispensing record
+
+## Buttons and placeholders
+- Loading label (replaces the button label, no spinner): Working
+- Photo placeholder art direction line: Warm, natural, at home, Indian kitchen. Never a clinic.
 
 ## States
 - Rejected: We couldn't dispense this order because {reason}. Nothing has been charged. Send a clearer prescription on WhatsApp and a pharmacist will look at it right away.

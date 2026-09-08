@@ -25,6 +25,15 @@
   --color-amber-border: #ecd9bc;
   --color-amber-ink: #b0761f;
 
+  /* Dose-time glyphs (design-system.md §7): morning, afternoon, night, empty ring */
+  --color-dose-morning: #eec27e;
+  --color-dose-afternoon: #8fa69e;
+  --color-dose-night: #3a5a50;
+  --color-dose-empty: #c2bcb0;
+
+  /* Timeline future ring and connector (design-system.md §10) */
+  --color-ring: #e0dbd1;
+
   /* Radii (design-system.md §5) */
   --radius-*: initial;
   --radius-input: 12px;
@@ -43,10 +52,11 @@
   --container-measure: 68ch;
   --container-article: 62ch;
 
-  /* Elevation: borders, not shadows. The blister strip's shadow is added with it. */
+  /* Elevation: borders, not shadows. The one permitted shadow sits under the blister strip. */
   --shadow-*: initial;
   --inset-shadow-*: initial;
   --drop-shadow-*: initial;
+  --drop-shadow-blister: 0 3px 4px rgb(30 42 40 / 0.14);
 
   /* Type families (design-system.md §4). Variables come from next/font in app/layout.tsx. */
   --font-sans: initial;
@@ -98,6 +108,19 @@
   --text-price: var(--fs-price);
   --text-price--line-height: 1.2;
   --text-price--font-weight: 700;
+
+  /* Fixed sizes used by primitives (design-system.md §5, §10) */
+  --text-button: 16px;
+  --text-button--line-height: 1;
+  --text-button--font-weight: 600;
+
+  --text-input: 15px;
+  --text-input--line-height: 1.4;
+  --text-input--font-weight: 400;
+
+  --text-row: 14px;
+  --text-row--line-height: 1.5;
+  --text-row--font-weight: 400;
 }
 
 /* Mobile sizes (design-system.md §4) */

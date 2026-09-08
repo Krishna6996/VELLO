@@ -36,7 +36,7 @@ export function MobileNav({ links }: MobileNavProps) {
         </svg>
       </button>
 
-      <Sheet open={open} onClose={() => setOpen(false)} title="Vello">
+      <Sheet open={open} onOpenChange={setOpen} title="Vello">
         <nav aria-label="Main">
           <ul className="flex flex-col">
             {links.map((link) => (
