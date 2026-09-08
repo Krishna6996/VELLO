@@ -1,0 +1,14 @@
+# build output and dependencies
+.next
+node_modules
+pnpm-lock.yaml
+next-env.d.ts
+
+# docs are the spec and are edited by hand, never reformatted
+docs
+*.md
+
+# unrelated files kept at the repo root
+prism
+index.html
+temp.py
